@@ -31,7 +31,7 @@ public class OrderController {
     }
 
 
-    public Object getOrder() {
+    public Order getOrder() {
         return this.order;
     }
 }
