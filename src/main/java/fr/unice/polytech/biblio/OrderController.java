@@ -30,6 +30,10 @@ public class OrderController {
         }
     }
 
+    public boolean validateOrder(Order order){
+        return order != null;
+    }
+
 
     public Order getOrder() {
         return this.order;

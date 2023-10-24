@@ -11,6 +11,8 @@ public class Order {
     public boolean isDelivered;
     public int price;
 
+    public boolean isValidated;
+
     public Order(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
         this.id = id;
         this.customer = customer;
@@ -72,5 +74,9 @@ public class Order {
             }
         }
         return false;
+    }
+
+    public boolean orderState(){
+        return true;
     }
 }
