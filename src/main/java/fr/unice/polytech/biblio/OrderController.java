@@ -31,7 +31,9 @@ public class OrderController {
     }
 
     public void validateOrder(Order order){
-       order.setOrderState(OrderState.VALIDATED);
+       if(order.getDishes()!=null)
+        order.setOrderState(OrderState.VALIDATED);
+       else System.out.println("The order is empty please");
     }
 
     public Order getOrder() {
