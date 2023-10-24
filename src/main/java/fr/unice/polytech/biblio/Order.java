@@ -19,6 +19,8 @@ public class Order {
         this.isDelivered = false;
     }
 
+
+
     public int getId() {
         return id;
     }
@@ -54,4 +56,12 @@ public class Order {
     }
 
 
+    public boolean containsDish(Dish dish) {
+        for (Dish d : this.dishes) {
+            if (d.getName().equals(dish.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

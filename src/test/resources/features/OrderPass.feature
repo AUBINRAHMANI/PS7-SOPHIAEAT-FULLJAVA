@@ -2,8 +2,9 @@
 Feature: Order Pass
   # Enter feature description here
 
-  Scenario: Menu Display
-    Given a customer "Toto"
-    When “Toto” want to see the available menu of the restaurant "Nice"
-    Then available menus of the restaurant "Nice" are displayed
+  Scenario: Choose Restaurant
+    Given a customer "Toto" "Dupond"
+    When "Toto" choose the restaurant "Nice"
+    Then he will be able to add dishes from the restaurant "Nice"
+
 
