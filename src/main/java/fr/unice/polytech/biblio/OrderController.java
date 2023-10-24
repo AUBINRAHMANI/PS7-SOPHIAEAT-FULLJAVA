@@ -34,4 +34,17 @@ public class OrderController {
     public Order getOrder() {
         return this.order;
     }
+
+    public Object getCurrentOrder() {
+        return this.order;
+    }
+
+    public boolean containsDish(Dish dish) {
+        if (this.order != null) {
+            return this.order.containsDish(dish);
+        } else {
+            System.out.println("No order created yet. Please create an order first.");
+            return false;
+        }
+    }
 }

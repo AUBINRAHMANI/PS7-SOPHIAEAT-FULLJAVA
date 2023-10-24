@@ -10,13 +10,10 @@ class DishTest {
 
     @BeforeEach
     void setUp() {
-        dish = new Dish(1, "Pasta",  10.0f);
+        dish = new Dish("Pasta",  10.0f);
     }
 
-    @Test
-    void getId() {
-        assertEquals(1, dish.getId());
-    }
+
 
     @Test
     void getName() {
@@ -31,12 +28,12 @@ class DishTest {
 
     @Test
     void toStringTest() {
-        assertEquals("Dish [id=1, name=Pasta, price=10.0]", dish.toString());
+        assertEquals("Dish [ name=Pasta, price=10.0]", dish.toString());
     }
 
     @Test
     void notEqualsTest() {
-        Dish anotherDish = new Dish(2, "Salad",  8.0f);
+        Dish anotherDish = new Dish("Salad",  8.0f);
         assertNotEquals(anotherDish, dish);
     }
 
