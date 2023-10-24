@@ -46,14 +46,7 @@ class OrderTest {
     }
 
     @Test
-    void getIsPaid() {
-        assertFalse(order.getIsPaid());
-    }
-
-    @Test
-    void getIsDelivered() {
-        assertFalse(order.getIsDelivered());
-    }
+    void getOrderState() {assertEquals(OrderState.PENDING, order.getOrderState());}
 
     @Test
     void addDish() {

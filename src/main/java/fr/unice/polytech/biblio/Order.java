@@ -7,16 +7,14 @@ public class Order {
     public Customer customer;
     public Restaurant restaurant;
     public ArrayList<Dish> dishes;
-    public boolean isPaid;
-    public boolean isDelivered;
+    public OrderState orderState;
 
     public Order(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
         this.id = id;
         this.customer = customer;
         this.restaurant = restaurant;
         this.dishes = dishes;
-        this.isPaid = false;
-        this.isDelivered = false;
+        this.orderState = OrderState.PENDING;
     }
 
     public int getId() {
@@ -35,13 +33,7 @@ public class Order {
         return dishes;
     }
 
-    public boolean getIsPaid() {
-        return isPaid;
-    }
-
-    public boolean getIsDelivered() {
-        return isDelivered;
-    }
+    public OrderState getOrderState() {return orderState; }
 
 
 
