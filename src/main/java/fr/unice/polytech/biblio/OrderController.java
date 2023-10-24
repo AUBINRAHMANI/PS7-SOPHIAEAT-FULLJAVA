@@ -30,8 +30,10 @@ public class OrderController {
         }
     }
 
-    public boolean validateOrder(Order order){
-        return order != null;
+    public void validateOrder(Order order){
+       if(order!=null){
+           order.setOrderStateValidated(order);
+       }
     }
 
 
