@@ -7,14 +7,29 @@ public class Order {
     public Customer customer;
     public Restaurant restaurant;
     public ArrayList<Dish> dishes;
-    public OrderState orderState;
+    public boolean isPaid;
+    public boolean isDelivered;
+    public int price;
+
+    public boolean isValidated;
 
     public Order(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
         this.id = id;
         this.customer = customer;
         this.restaurant = restaurant;
         this.dishes = dishes;
-        this.orderState = OrderState.PENDING;
+        this.isPaid = false;
+        this.isDelivered = false;
+        this.price=0;
+    }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void addPrice(int price) {
+        this.price+= price;
     }
 
     public int getId() {
@@ -33,7 +48,13 @@ public class Order {
         return dishes;
     }
 
-    public OrderState getOrderState() {return orderState; }
+    public boolean getIsPaid() {
+        return isPaid;
+    }
+
+    public boolean getIsDelivered() {
+        return isDelivered;
+    }
 
 
 
@@ -46,4 +67,16 @@ public class Order {
     }
 
 
+    public boolean containsDish(Dish dish) {
+        for (Dish d : this.dishes) {
+            if (d.getName().equals(dish.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean orderState(){
+        return true;
+    }
 }
