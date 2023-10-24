@@ -56,7 +56,10 @@ public class Order {
         return isDelivered;
     }
 
+    public void setOrderStateValidated(Order order){
+       // order.orderState == OrderState.VALIDATED
 
+    }
 
     public void addDish(Dish dish) {
         dishes.add(dish);
@@ -79,4 +82,5 @@ public class Order {
     public boolean orderState(){
         return true;
     }
+
 }
