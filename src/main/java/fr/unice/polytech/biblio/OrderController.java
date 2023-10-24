@@ -52,4 +52,8 @@ public class OrderController {
             return false;
         }
     }
+
+    public void validateOrder(Order order) {
+        order.setOrderState(OrderState.VALIDATED);
+    }
 }
