@@ -9,6 +9,7 @@ public class Order {
     public ArrayList<Dish> dishes;
     public boolean isPaid;
     public boolean isDelivered;
+    public int price;
 
     public Order(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
         this.id = id;
@@ -17,6 +18,16 @@ public class Order {
         this.dishes = dishes;
         this.isPaid = false;
         this.isDelivered = false;
+        this.price=0;
+    }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void addPrice(int price) {
+        this.price+= price;
     }
 
     public int getId() {
@@ -54,4 +65,12 @@ public class Order {
     }
 
 
+    public boolean containsDish(Dish dish) {
+        for (Dish d : this.dishes) {
+            if (d.getName().equals(dish.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

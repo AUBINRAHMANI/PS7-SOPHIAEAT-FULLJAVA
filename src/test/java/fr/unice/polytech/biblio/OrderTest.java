@@ -18,7 +18,7 @@ class OrderTest {
     void setUp() {
         customer = new Customer(1,"John", "Doe");
         dishes = new ArrayList<>();
-        dishes.add(new Dish(1, "Hamburger", 10));
+        dishes.add(new Dish("Hamburger", 10));
 
         restaurant = new Restaurant("McDonalds","123 Main St" , dishes);
 
@@ -57,7 +57,7 @@ class OrderTest {
 
     @Test
     void addDish() {
-        Dish newDish = new Dish(2, "Fries", 5);
+        Dish newDish = new Dish( "Fries", 5);
         order.addDish(newDish);
         assertTrue(order.getDishes().contains(newDish));
     }

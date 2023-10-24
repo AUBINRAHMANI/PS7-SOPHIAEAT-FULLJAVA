@@ -15,6 +15,12 @@ public class Restaurant {
         this.dishes = dishes;
     }
 
+    public Restaurant(String restaurantName) {
+        this.name = restaurantName;
+        this.address = "";
+        this.dishes = new ArrayList<Dish>();
+    }
+
 
     public String getName() {
         return name;
@@ -31,5 +37,14 @@ public class Restaurant {
 
     public String toString() {
         return "Restaurant [name=" + name + ", address=" + address + ", dishes=" + dishes + "]";
+    }
+
+    public Dish getDishByName(String someDish) {
+        for (Dish dish : this.dishes) {
+            if (dish.getName().equals(someDish)) {
+                return dish;
+            }
+        }
+        return null;
     }
 }
