@@ -1,20 +1,16 @@
 package fr.unice.polytech.biblio;
 
 public class Dish {
-    public int id;
+
     public String name;
     public float price;
 
-    public Dish(int id, String name, float price) {
-        this.id = id;
+    public Dish( String name, float price) {
         this.name = name;
         this.price = price;
     }
 
 
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -27,6 +23,6 @@ public class Dish {
 
 
     public String toString() {
-        return "Dish [id=" + id + ", name=" + name + ", price=" + price + "]";
+        return "Dish [ name=" + name + ", price=" + price + "]";
     }
 }

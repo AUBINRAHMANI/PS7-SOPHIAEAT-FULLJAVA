@@ -18,7 +18,7 @@ class OrderControllerTest {
     void setUp() {
         customer = new Customer(1, "John", "Doe");
         dishes = new ArrayList<>();
-        dishes.add(new Dish(1, "Hamburger", 10));
+        dishes.add(new Dish("Hamburger", 10));
 
         restaurant = new Restaurant("McDonalds", "123 Main St", dishes);
 

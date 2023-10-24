@@ -52,7 +52,7 @@ public class MyStepdefs {
 //
 //
         // Vous pouvez ajouter des assertions pour vérifier que le plat a bien été ajouté à la commande, par exemple :
-       // assertTrue(Boolean.parseBoolean(orderController.getCurrentOrder().toString()));
+        //assertTrue(Boolean.parseBoolean(orderController.getCurrentOrder().toString()));
     }
 
 
