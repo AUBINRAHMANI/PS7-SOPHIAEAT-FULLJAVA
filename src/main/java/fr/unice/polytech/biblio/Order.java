@@ -3,11 +3,11 @@ package fr.unice.polytech.biblio;
 import java.util.ArrayList;
 
 public class Order {
-    public int id;
-    public Customer customer;
-    public Restaurant restaurant;
-    public ArrayList<Dish> dishes;
-    public OrderState orderState;
+    private int id;
+    private Customer customer;
+    private Restaurant restaurant;
+    private ArrayList<Dish> dishes;
+    private OrderState orderState;
 
     public boolean isValidated;
 
@@ -37,10 +37,8 @@ public class Order {
 
     public OrderState getOrderState() {return orderState; }
 
-    public void setOrderStateValidated(Order order){
-       // order.orderState == OrderState.VALIDATED
+    public void setOrderState(OrderState orderState) {this.orderState = orderState;}
 
-    }
 
     public void addDish(Dish dish) {
         dishes.add(dish);
@@ -57,10 +55,6 @@ public class Order {
             }
         }
         return false;
-    }
-
-    public boolean orderState(){
-        return true;
     }
 
 }

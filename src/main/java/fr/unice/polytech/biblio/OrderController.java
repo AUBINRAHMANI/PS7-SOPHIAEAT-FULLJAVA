@@ -31,11 +31,8 @@ public class OrderController {
     }
 
     public void validateOrder(Order order){
-       if(order!=null){
-           order.setOrderStateValidated(order);
-       }
+       order.setOrderState(OrderState.VALIDATED);
     }
-
 
     public Order getOrder() {
         return this.order;
