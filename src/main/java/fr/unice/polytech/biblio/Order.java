@@ -7,9 +7,7 @@ public class Order {
     public Customer customer;
     public Restaurant restaurant;
     public ArrayList<Dish> dishes;
-    public boolean isPaid;
-    public boolean isDelivered;
-    public int price;
+    public OrderState orderState;
 
     public boolean isValidated;
 
@@ -18,18 +16,7 @@ public class Order {
         this.customer = customer;
         this.restaurant = restaurant;
         this.dishes = dishes;
-        this.isPaid = false;
-        this.isDelivered = false;
-        this.price=0;
-    }
-
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void addPrice(int price) {
-        this.price+= price;
+        this.orderState = OrderState.PENDING;
     }
 
     public int getId() {
@@ -48,13 +35,7 @@ public class Order {
         return dishes;
     }
 
-    public boolean getIsPaid() {
-        return isPaid;
-    }
-
-    public boolean getIsDelivered() {
-        return isDelivered;
-    }
+    public OrderState getOrderState() {return orderState; }
 
 
 
@@ -65,7 +46,6 @@ public class Order {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
 
     public boolean containsDish(Dish dish) {
         for (Dish d : this.dishes) {
