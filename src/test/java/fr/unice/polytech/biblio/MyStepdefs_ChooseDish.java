@@ -20,9 +20,10 @@ public class MyStepdefs_ChooseDish {
     public void aCustomerWhoHasChosenTheRestaurant(String customerName, String restaurantName) {
         customer = new Customer(customerName, "Some Surname");
         restaurant = new Restaurant(restaurantName);
-        order = new Order(1, customer, restaurant, dishes);
+        //order = new Order(1, customer, restaurant, dishes);
         orderController = new OrderController();
         orderController.createOrder(1, customer, restaurant, dishes);
+        order = orderController.getOrder();
         orderController.chooseRestaurant(restaurant);
 
     }
@@ -31,6 +32,7 @@ public class MyStepdefs_ChooseDish {
     public void addADish(String customerName, String dish) {
         this.dish = new Dish("pizza",10);
         orderController.addDish(this.dish);
+        System.out.println(order.getPriceOrder());
     }
 
     @Then("the order price will increase by {string} ‘s price")
