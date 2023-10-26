@@ -34,6 +34,10 @@ public class Restaurant {
         return dishes;
     }
 
+    public void addDish(Dish dish){
+        dishes.add(dish);
+    }
+
 
     public String toString() {
         return "Restaurant [name=" + name + ", address=" + address + ", dishes=" + dishes + "]";
