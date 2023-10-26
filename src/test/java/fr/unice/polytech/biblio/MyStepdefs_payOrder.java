@@ -27,7 +27,7 @@ public class MyStepdefs_payOrder {
     ArrayList<Dish> dishes;
 
 
-    @Given("a customer {String} who has an order with one dish {String} in the restaurant {String}")
+    @Given("a customer {string} who has an order with one dish {string} in the restaurant {string}")
     public void customerWhoHasOrdered(String customerName, String dishName, String nameRestaurant){
         customer = new Customer(customerName,"huzog");
         dish = new Dish(dishName,20);
@@ -41,7 +41,24 @@ public class MyStepdefs_payOrder {
         orderController.createOrder(1,customer,restaurant,dishes);
         orderController.chooseRestaurant(restaurant);
         order = orderController.getOrder();
+        orderController.addDish(dish);
     }
+
+    @When("{string} pays the order")
+    public void customerPaysTheOrder(String customerName){
+        orderController.validateOrder(order);
+        assertEquals(order.getOrderState(),OrderState.VALIDATED);
+        orderController.pay(order,20);
+
+    }
+
+    @Given("the order is paid, the payement is valid and the restaurant is notified of the order for preparation")
+    public void orderValidated(){
+        PayementSystem payementSystem = orderController.getPayementSystem();
+        assertEquals(order.getOrderState(),OrderState.PAID);
+        assertEquals(payementSystem.getPayementState(),PayementState.VALID);
+    }
+
 
 
 }
