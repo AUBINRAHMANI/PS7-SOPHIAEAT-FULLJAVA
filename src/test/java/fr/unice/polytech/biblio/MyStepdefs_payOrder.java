@@ -8,8 +8,7 @@ import io.cucumber.java.en.When;
 import java.security.interfaces.DSAKey;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MyStepdefs_payOrder {
 
@@ -57,6 +56,8 @@ public class MyStepdefs_payOrder {
         PayementSystem payementSystem = orderController.getPayementSystem();
         assertEquals(order.getOrderState(),OrderState.PAID);
         assertEquals(payementSystem.getPayementState(),PayementState.VALID);
+        orderController.notify(restaurant);
+        assertTrue( orderController.notify(restaurant));
     }
 
 

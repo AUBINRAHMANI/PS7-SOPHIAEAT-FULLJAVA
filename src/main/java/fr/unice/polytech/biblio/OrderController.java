@@ -37,7 +37,18 @@ public class OrderController {
         }
     }
 
-   /* public void orderPayable(Order order){
+    public boolean notify(Restaurant restaurant){
+        if(this.getOrder().getOrderState().equals(OrderState.PAID))
+        {
+        restaurant.prepareOrder(this.getOrder());
+        return true;
+        }
+
+        else return false;
+
+    }
+
+  /* public void orderPayable(Order order){
         if(order.getOrderState().equals(OrderState.VALIDATED))
             this.payementSystem.setPayementState(PayementState.UNLOCK);
         else System.out.println("Please Validate your Order before");
