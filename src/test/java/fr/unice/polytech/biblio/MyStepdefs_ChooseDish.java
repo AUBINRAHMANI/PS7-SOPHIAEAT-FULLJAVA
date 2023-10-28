@@ -6,6 +6,7 @@ import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class MyStepdefs_ChooseDish {
@@ -37,7 +38,7 @@ public class MyStepdefs_ChooseDish {
 
     @Then("the order price will increase by {string} ‘s price")
     public void theOrderPriceWillIncreaseBySPrice(String price) {
-        assertTrue(orderController.getCurrentOrder()!=null);
+        assertNotNull(orderController.getCurrentOrder());
 
     }
 
