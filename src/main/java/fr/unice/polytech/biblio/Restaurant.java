@@ -51,4 +51,9 @@ public class Restaurant {
         }
         return null;
     }
+
+    //a modifier
+    public void prepareOrder(Order order){
+        return;
+    }
 }
