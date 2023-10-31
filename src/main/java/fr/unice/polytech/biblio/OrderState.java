@@ -4,7 +4,8 @@ public enum OrderState {
     PENDING,
     VALIDATED,
     PAID,
-    READY,
+    READY_TO_COOK,
+    IN_PROGRESS,
     DELIVERED,
     CANCELLED
 }
