@@ -37,11 +37,12 @@ public class OrderController {
         }
     }
 
+    //enlever le boolean après
     public boolean notify(Restaurant restaurant){
         if(this.getOrder().getOrderState().equals(OrderState.PAID))
         {
-        restaurant.prepareOrder(this.getOrder());
-        return true;
+        restaurant.orderGetReady(this.getOrder());
+        return true; //pour le test cucumber
         }
 
         else return false;
@@ -64,8 +65,6 @@ public class OrderController {
        }
        else System.out.println("The order is empty please");
     }
-
-
 
     public Order getOrder() {
         return this.order;
@@ -100,6 +99,6 @@ public class OrderController {
 
     public void validatePayement(){
         payementSystem.setPayementState(PayementState.VALID);
-
     }
+
 }

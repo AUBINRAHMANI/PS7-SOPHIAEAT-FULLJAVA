@@ -53,7 +53,7 @@ public class Restaurant {
     }
 
     //a modifier
-    public void prepareOrder(Order order){
-        return;
+    public void orderGetReady(Order order){
+        order.setOrderState(OrderState.READY_TO_COOK);
     }
 }
