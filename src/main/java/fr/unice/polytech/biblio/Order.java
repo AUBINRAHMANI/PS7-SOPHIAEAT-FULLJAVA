@@ -22,31 +22,40 @@ public class Order {
         this.priceOrder = 0;
     }
 
+    public Order(int id, Customer customer, Restaurant restaurant) {
+        this.id = id;
+        this.customer = customer;
+        this.restaurant = restaurant;
+        this.dishes = new ArrayList<Dish>();
+        this.orderState = OrderState.PENDING;
+        this.priceOrder = 0;
+    }
+
     public int getId() {
         return id;
     }
 
     public Customer getCustomer() {
-        return customer;
+        return this.customer;
     }
 
     public Restaurant getRestaurant() {
-        return restaurant;
+        return this.restaurant;
     }
 
     public ArrayList<Dish> getDishes() {
-        return dishes;
+        return this.dishes;
     }
 
-    public OrderState getOrderState() {return orderState; }
+    public OrderState getOrderState() {return this.orderState; }
 
     public void setOrderState(OrderState orderState) {this.orderState = orderState;}
 
 
     public void addDish(Dish dish) {
-        if(dish==null) this.priceOrder=0;
+        if(this.dishes==null) this.priceOrder=0;
         else {
-            dishes.add(dish);
+            this.dishes.add(dish);
             this.priceOrder += dish.getPrice();
         }
     }
