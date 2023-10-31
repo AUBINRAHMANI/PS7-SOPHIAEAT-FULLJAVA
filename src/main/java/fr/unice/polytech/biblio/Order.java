@@ -9,12 +9,26 @@ public class Order {
     private ArrayList<Dish> dishes;
     private OrderState orderState;
 
+    private float priceOrder;
+
+    public boolean isValidated;
+
     public Order(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
         this.id = id;
         this.customer = customer;
         this.restaurant = restaurant;
         this.dishes = dishes;
         this.orderState = OrderState.PENDING;
+        this.priceOrder = 0;
+    }
+
+    public Order(int id, Customer customer, Restaurant restaurant) {
+        this.id = id;
+        this.customer = customer;
+        this.restaurant = restaurant;
+        this.dishes = new ArrayList<Dish>();
+        this.orderState = OrderState.PENDING;
+        this.priceOrder = 0;
     }
 
     public int getId() {
@@ -22,23 +36,32 @@ public class Order {
     }
 
     public Customer getCustomer() {
-        return customer;
+        return this.customer;
     }
 
     public Restaurant getRestaurant() {
-        return restaurant;
+        return this.restaurant;
     }
 
     public ArrayList<Dish> getDishes() {
-        return dishes;
+        return this.dishes;
     }
 
-    public OrderState getOrderState() {return orderState; }
+    public OrderState getOrderState() {return this.orderState; }
 
     public void setOrderState(OrderState orderState) {this.orderState = orderState;}
 
+
     public void addDish(Dish dish) {
-        dishes.add(dish);
+        if(this.dishes==null) this.priceOrder=0;
+        else {
+            this.dishes.add(dish);
+            this.priceOrder += dish.getPrice();
+        }
+    }
+
+    public float getPriceOrder() {
+        return this.priceOrder;
     }
 
     public void setRestaurant(Restaurant restaurant) {
@@ -52,6 +75,11 @@ public class Order {
             }
         }
         return false;
+    }
+
+    public boolean pay(int prix){
+        return getPriceOrder() == prix;
+
     }
 
 }
