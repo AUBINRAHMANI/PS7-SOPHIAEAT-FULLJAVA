@@ -20,7 +20,7 @@ public class MyStepdefs_validOrder {
 
     Dish dish;
 
-    ArrayList<Dish> dishes = new ArrayList<>();
+  //  ArrayList<Dish> dishes = new ArrayList<>();
 
     OrderController orderController;
 
@@ -31,11 +31,10 @@ public class MyStepdefs_validOrder {
     public void aCustomerWhohasAlreadyChosenTheRestaurant(String customerName,String customerSurname, String restaurantName) {
         customer = new Customer(customerName, customerSurname);
         restaurant = new Restaurant(restaurantName);
-        dishes = new ArrayList<>();
         //order = new Order(1, customer, restaurant, dishes);
         //payementSystem = new PayementSystem(1);
         orderController = new OrderController();
-        orderController.createOrder(1,customer,restaurant,dishes);
+        orderController.createOrder(1,customer,restaurant);
         order=orderController.getOrder();
         orderController.chooseRestaurant(restaurant);
     }
@@ -59,6 +58,7 @@ public class MyStepdefs_validOrder {
         assertEquals(PayementState.UNLOCK, payementSystem.getPayementState());
 
         orderController.pay(order,10);
+        System.out.println(1);
         assertEquals(OrderState.PAID,order.getOrderState());
         }
 

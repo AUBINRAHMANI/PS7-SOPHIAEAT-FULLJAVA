@@ -79,18 +79,6 @@ public class OrderController {
     public PayementSystem getPayementSystem(){
         return this.payementSystem;
     }
-    public Order getCurrentOrder() {
-        return this.order;
-    }
-
-    public boolean containsDish(Dish dish) {
-        if (this.order != null) {
-            return this.order.containsDish(dish);
-        } else {
-            System.out.println("No order created yet. Please create an order first.");
-            return false;
-        }
-    }
 
     public void pay(Order order, int prix){
         Restaurant restaurant = order.getRestaurant();
@@ -102,11 +90,12 @@ public class OrderController {
         System.out.println(order.getOrderState());
         System.out.println(payementSystem.getPayementState());
         if(payementSystem.isValid()) {
-            restaurant.orderGetReady(this.getOrder());
             order.setOrderState(OrderState.PAID);
+            //restaurant.orderGetReady(this.getOrder());
+
         }
 
-        this.notify(order.getRestaurant());
+        //this.notify(order.getRestaurant());
 
     }
 
