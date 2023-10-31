@@ -20,6 +20,12 @@ public class OrderController {
 
     }
 
+    public void createOrder(int id, Customer customer, Restaurant restaurant) {
+        this.order = new Order(id, customer, restaurant);
+        payementSystem = new PayementSystem(id);
+
+    }
+
 
     public void addDish(Dish dish) {
         if (this.order != null) {
@@ -37,11 +43,12 @@ public class OrderController {
         }
     }
 
+    //enlever le boolean après
     public boolean notify(Restaurant restaurant){
         if(this.getOrder().getOrderState().equals(OrderState.PAID))
         {
-        restaurant.prepareOrder(this.getOrder());
-        return true;
+        restaurant.orderGetReady(this.getOrder());
+        return true; //pour le test cucumber
         }
 
         else return false;
@@ -65,8 +72,6 @@ public class OrderController {
        else System.out.println("The order is empty please");
     }
 
-
-
     public Order getOrder() {
         return this.order;
     }
@@ -88,6 +93,7 @@ public class OrderController {
     }
 
     public void pay(Order order, int prix){
+        Restaurant restaurant = order.getRestaurant();
         if(payementSystem.getPayementState().equals(PayementState.UNLOCK)){
            if(order.pay(prix))
             validatePayement();
@@ -95,11 +101,17 @@ public class OrderController {
         }
         System.out.println(order.getOrderState());
         System.out.println(payementSystem.getPayementState());
-        if(payementSystem.isValid()) order.setOrderState(OrderState.PAID);
+        if(payementSystem.isValid()) {
+            restaurant.orderGetReady(this.getOrder());
+            order.setOrderState(OrderState.PAID);
+        }
+
+        this.notify(order.getRestaurant());
+
     }
 
     public void validatePayement(){
         payementSystem.setPayementState(PayementState.VALID);
-
     }
+
 }
