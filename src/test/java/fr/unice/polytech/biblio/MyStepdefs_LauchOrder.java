@@ -43,6 +43,7 @@ public class MyStepdefs_LauchOrder {
         orderController.validateOrder(order);
 
         orderController.pay(order,15);
+        orderController.notify(restaurant);
         assertEquals(order.getOrderState(),OrderState.READY_TO_COOK);
     }
 
@@ -50,6 +51,7 @@ public class MyStepdefs_LauchOrder {
     public void prepareTheOrderForCustomer(String restaurantName, String customerName){
         cook = new Cook(1,"Obelix","Potion",restaurant);
         cook.prepareOrder(order);
+
     }
 
     @Then("the status of {string}'s order is updated to ''preparation in progress''")

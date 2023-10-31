@@ -23,7 +23,7 @@ public class MyStepdefs_payOrder {
 
     Dish pizza;
 
-    ArrayList<Dish> dishes;
+    //ArrayList<Dish> dishes;
 
 
     @Given("a customer {string} who has an order with one dish {string} in the restaurant {string}")
@@ -34,10 +34,10 @@ public class MyStepdefs_payOrder {
         restaurant = new Restaurant(nameRestaurant);
         restaurant.addDish(dish);
         restaurant.addDish(pizza);
-        dishes = restaurant.getDishes();
+
 
         orderController = new OrderController();
-        orderController.createOrder(1,customer,restaurant,dishes);
+        orderController.createOrder(1,customer,restaurant);
         orderController.chooseRestaurant(restaurant);
         order = orderController.getOrder();
         orderController.addDish(dish);
@@ -56,10 +56,9 @@ public class MyStepdefs_payOrder {
         PayementSystem payementSystem = orderController.getPayementSystem();
         assertEquals(order.getOrderState(),OrderState.PAID);
         assertEquals(payementSystem.getPayementState(),PayementState.VALID);
-        orderController.notify(restaurant);
         assertTrue( orderController.notify(restaurant));
+        assertEquals(order.getOrderState(),OrderState.READY_TO_COOK);
     }
-
 
 
 }
