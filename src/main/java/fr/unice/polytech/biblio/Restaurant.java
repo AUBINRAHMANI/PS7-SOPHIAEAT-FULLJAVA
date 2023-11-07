@@ -64,7 +64,7 @@ public class Restaurant {
     }
 
     public boolean isTimeValid(HourTime hourTime) {
-        return hourTime.compareTo(openingTime.getOpeningHour()) >= 0 && hourTime.compareTo(openingTime.getOpeningHour()) <= 0;
+        return hourTime.compareTo(openingTime.getOpeningHour()) >= 0 && hourTime.compareTo(openingTime.getClosingHour()) <= 0;
     }
 
     //a modifier
