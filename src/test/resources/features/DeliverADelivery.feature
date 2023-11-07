@@ -1,6 +1,8 @@
 # Created by wassi at 07/11/2023
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Deliver a delivery
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+
+  Scenario: Deliver a delivery
+  GIVEN a deliverer "Jacky" has retrieved the order for delivery,
+  WHEN the deliverer "Jacky" successfully delivers the order to the specified destination,
+  THEN the delivery is marked as "delivered" by the system.

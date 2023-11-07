@@ -13,4 +13,10 @@ public class Deliverer extends User{
         if(order.getOrderState().equals(OrderState.READY_TO_DELIVER))
             order.setOrderState(OrderState.IN_PROGRESS_DELIVERY);
     }
+
+    public void DeliverAnOrder(Order order){
+        if(order.getOrderState().equals(OrderState.IN_PROGRESS_DELIVERY))
+            order.setOrderState(OrderState.DELIVERED);
+    }
+
 }
