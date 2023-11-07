@@ -5,11 +5,20 @@ import java.util.ArrayList;
 
 public class Restaurant {
 
-    public String name;
-    public String address;
-    public ArrayList<Dish> dishes;
+    private String name;
+    private String address;
+    private ArrayList<Dish> dishes;
+    private OpeningTime openingTime;
 
-    public Restaurant( String name, String address, ArrayList<Dish> dishes) {
+    public OpeningTime getOpeningTime() {
+        return openingTime;
+    }
+
+    public void setOpeningTime(OpeningTime openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public Restaurant(String name, String address, ArrayList<Dish> dishes) {
         this.name = name;
         this.address = address;
         this.dishes = dishes;
