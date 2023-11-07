@@ -2,52 +2,73 @@ package fr.unice.polytech.biblio;
 
 import org.mockito.internal.matchers.Or;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderController {
-    private Order order;
-
-    private PayementSystem payementSystem;
+    private ArrayList<Order> orders;
 
     public OrderController() {
-        this.order = null;
+        this.orders = new ArrayList<>();
 
     }
 
     public void createOrder(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
-        this.order = new Order(id, customer, restaurant, dishes);
-        payementSystem = new PayementSystem(id);
-
+        Order order = new Order(id, customer, restaurant, dishes);
+        PayementSystem payementSystem = new PayementSystem(id);
+        order.setPayementSystem(payementSystem);
+        orders.add(order);
     }
 
     public void createOrder(int id, Customer customer, Restaurant restaurant) {
-        this.order = new Order(id, customer, restaurant);
-        payementSystem = new PayementSystem(id);
-
+        Order order = new Order(id, customer, restaurant);
+        PayementSystem payementSystem = new PayementSystem(id);
+        order.setPayementSystem(payementSystem);
+        orders.add(order);
     }
 
 
-    public void addDish(Dish dish) {
-        if (this.order != null) {
-            this.order.addDish(dish);
+    public void addDish(Order order,Dish dish) {
+        if (order != null) {
+            order.addDish(dish);
         } else {
             System.out.println("No order created yet. Please create an order first.");
         }
     }
 
-    public void chooseRestaurant(Restaurant restaurant) {
-        if (this.order != null) {
-            this.order.setRestaurant(restaurant);
+    public void chooseRestaurant(Order order, Restaurant restaurant) {
+        if (order != null) {
+            order.setRestaurant(restaurant);
         } else {
             System.out.println("No order created yet. Please create an order first.");
         }
+    }
+
+    public Order getOrderById(int id) {
+        for(Order order : orders) {
+            if(order.getId() == id) {
+                return order;
+            }
+        }
+        return null;
+    }
+
+    public List<Order> getOrdersByCustomer(Customer customer) {
+        List<Order> customerOrders = new ArrayList<>();
+        for(Order order : orders) {
+            if(order.getCustomer() == customer) {
+                customerOrders.add(order);
+            }
+        }
+        return customerOrders;
     }
 
     //enlever le boolean après
-    public boolean notify(Restaurant restaurant){
-        if(this.getOrder().getOrderState().equals(OrderState.PAID))
+    public boolean notify(Order order, Restaurant restaurant){
+        if(order.getOrderState().equals(OrderState.PAID))
         {
-            restaurant.orderGetReady(this.getOrder());
+            restaurant.orderGetReady(order);
             return true; //pour le test cucumber
         }
 
@@ -72,31 +93,27 @@ public class OrderController {
            else {
                order.setOrderState(OrderState.VALIDATED);
                System.out.println(2);
-               System.out.println(this.payementSystem.getPayementState());
-               this.payementSystem.setPayementState(PayementState.UNLOCK);
-               System.out.println(this.payementSystem.getPayementState());
+               System.out.println(order.getPayementSystem());
+               order.getPayementSystem().setPayementState(PayementState.UNLOCK);
+               System.out.println(order.getPayementSystem());
            }
        }
     }
 
-    public Order getOrder() {
-        return this.order;
-    }
-
-    public PayementSystem getPayementSystem(){
-        return this.payementSystem;
+    public ArrayList<Order> getOrders() {
+        return this.orders;
     }
 
     public void pay(Order order, int prix){
         Restaurant restaurant = order.getRestaurant();
-        if(payementSystem.getPayementState().equals(PayementState.UNLOCK)){
+        if(order.getPayementSystem().getPayementState().equals(PayementState.UNLOCK)){
            if(order.pay(prix))
-            validatePayement();
-           else payementSystem.setPayementState(PayementState.UNVALID);;
+            validatePayement(order);
+           else order.getPayementSystem().setPayementState(PayementState.UNVALID);;
         }
         System.out.println(order.getOrderState());
-        System.out.println(payementSystem.getPayementState());
-        if(payementSystem.isValid()) {
+        System.out.println(order.getPayementSystem().getPayementState());
+        if(order.getPayementSystem().isValid()) {
             order.setOrderState(OrderState.PAID);
             //restaurant.orderGetReady(this.getOrder());
 
@@ -106,13 +123,13 @@ public class OrderController {
 
     }
 
-    public void validatePayement(){
-        payementSystem.setPayementState(PayementState.VALID);
+    public void validatePayement(Order order){
+        order.getPayementSystem().setPayementState(PayementState.VALID);
     }
 
     public void cancelOrder(Order order) {
         order.setOrderState(OrderState.CANCELLED);
-        payementSystem.setPayementState(PayementState.LOCK);
+        order.getPayementSystem().setPayementState(PayementState.LOCK);
     }
 
 }

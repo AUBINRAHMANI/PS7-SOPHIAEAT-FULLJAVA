@@ -8,10 +8,16 @@ public class Order {
     private Restaurant restaurant;
     private ArrayList<Dish> dishes;
     private OrderState orderState;
-
     private float priceOrder;
+    private PayementSystem payementSystem;
 
-    public boolean isValidated;
+    public PayementSystem getPayementSystem() {
+        return payementSystem;
+    }
+
+    public void setPayementSystem(PayementSystem payementSystem) {
+        this.payementSystem = payementSystem;
+    }
 
     public Order(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
         this.id = id;
