@@ -16,4 +16,10 @@ public class Cook extends User{
         if(order.getOrderState().equals(OrderState.READY_TO_COOK))
             order.setOrderState(OrderState.IN_PROGRESS);
     }
+
+    public void completeOrder(Order order){
+        if(order.getOrderState().equals(OrderState.IN_PROGRESS)){
+            order.setOrderState(OrderState.READY_TO_DELIVER);
+        }
+    }
 }
