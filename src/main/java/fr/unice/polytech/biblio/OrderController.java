@@ -47,8 +47,8 @@ public class OrderController {
     public boolean notify(Restaurant restaurant){
         if(this.getOrder().getOrderState().equals(OrderState.PAID))
         {
-        restaurant.orderGetReady(this.getOrder());
-        return true; //pour le test cucumber
+            restaurant.orderGetReady(this.getOrder());
+            return true; //pour le test cucumber
         }
 
         else return false;
@@ -62,14 +62,21 @@ public class OrderController {
     }
 */
     public void validateOrder(Order order){
-       if(order.getDishes()!=null){
-        order.setOrderState(OrderState.VALIDATED);
-        System.out.println(2);
-        System.out.println(this.payementSystem.getPayementState());
-        this.payementSystem.setPayementState(PayementState.UNLOCK);
-        System.out.println(this.payementSystem.getPayementState());
+       if(order.getDishes()==null) {
+           System.out.println("The order is empty please");
        }
-       else System.out.println("The order is empty please");
+       else {
+           if(order.getOrderState()!=OrderState.PENDING) {
+               System.out.println("The order can't be validated");
+           }
+           else {
+               order.setOrderState(OrderState.VALIDATED);
+               System.out.println(2);
+               System.out.println(this.payementSystem.getPayementState());
+               this.payementSystem.setPayementState(PayementState.UNLOCK);
+               System.out.println(this.payementSystem.getPayementState());
+           }
+       }
     }
 
     public Order getOrder() {
@@ -101,6 +108,11 @@ public class OrderController {
 
     public void validatePayement(){
         payementSystem.setPayementState(PayementState.VALID);
+    }
+
+    public void cancelOrder(Order order) {
+        order.setOrderState(OrderState.CANCELLED);
+        payementSystem.setPayementState(PayementState.LOCK);
     }
 
 }
