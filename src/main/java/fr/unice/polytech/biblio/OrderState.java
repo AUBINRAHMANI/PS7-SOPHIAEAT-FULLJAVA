@@ -9,6 +9,9 @@ public enum OrderState {
 
     READY_TO_DELIVER,
 
+    IN_PROGRESS_DELIVERY,
+
     DELIVERED,
+
     CANCELLED
 }
