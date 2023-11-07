@@ -37,9 +37,9 @@ public class MyStepdefs_payOrder {
 
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
-        orderController.chooseRestaurant(restaurant);
-        order = orderController.getOrder();
-        orderController.addDish(dish);
+        orderController.chooseRestaurant(order, restaurant);
+        order = orderController.getOrderById(1);
+        orderController.addDish(order, dish);
     }
 
     @When("{string} pays the order")
@@ -53,10 +53,10 @@ public class MyStepdefs_payOrder {
 
     @Given("the order is paid, the payement is valid and the restaurant is notified of the order for preparation")
     public void orderValidated(){
-        PayementSystem payementSystem = orderController.getPayementSystem();
+        PayementSystem payementSystem = order.getPayementSystem();
         assertEquals(order.getOrderState(),OrderState.PAID);
         assertEquals(payementSystem.getPayementState(),PayementState.VALID);
-        assertTrue( orderController.notify(restaurant));
+        assertTrue( orderController.notify(order, restaurant));
         assertEquals(order.getOrderState(),OrderState.READY_TO_COOK);
     }
 

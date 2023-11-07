@@ -33,16 +33,16 @@ public class MyStepdefs_LauchOrder {
         restaurant.addDish(pizza);
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
-        order = orderController.getOrder();
-        orderController.chooseRestaurant(restaurant);
+        order = orderController.getOrderById(1);
+        orderController.chooseRestaurant(order, restaurant);
 
-        orderController.addDish(pizza);
+        orderController.addDish(order, pizza);
         System.out.println(order.getDishes());
         HourTime currentTime = new HourTime(14,30);
         orderController.validateOrder(order, currentTime);
 
         orderController.pay(order,15);
-        orderController.notify(restaurant);
+        orderController.notify(order, restaurant);
         assertEquals(order.getOrderState(),OrderState.READY_TO_COOK);
     }
 
