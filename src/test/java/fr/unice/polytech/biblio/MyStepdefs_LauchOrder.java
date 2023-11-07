@@ -13,25 +13,23 @@ import static org.junit.Assert.assertEquals;
 public class MyStepdefs_LauchOrder {
 
     Customer customer;
-
     Restaurant restaurant;
-
     Dish pizza;
-
    // ArrayList<Dish> dishes;
-
     OrderController orderController;
-
     Order order;
-
     Cook cook;
+    OpeningTime openingTime;
 
     @Given("restaurant {string} with a paid order for user {string}")
     public void paidOrderofUser(String restaurantName, String userName){
 
         Customer customer = new Customer(userName,"huzog");
         pizza = new Dish("pizza", 15);
-        restaurant = new Restaurant(restaurantName);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant(restaurantName, "2 impasse de l'etoile", openingTime);
         restaurant.addDish(pizza);
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
@@ -40,7 +38,8 @@ public class MyStepdefs_LauchOrder {
 
         orderController.addDish(pizza);
         System.out.println(order.getDishes());
-        orderController.validateOrder(order);
+        HourTime currentTime = new HourTime(14,30);
+        orderController.validateOrder(order, currentTime);
 
         orderController.pay(order,15);
         orderController.notify(restaurant);

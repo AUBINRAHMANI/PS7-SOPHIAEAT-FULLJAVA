@@ -17,10 +17,14 @@ public class MyStepdefs_ChooseDish {
     OrderController orderController;
     Order order;
     ArrayList<Dish> dishes;
+    OpeningTime openingTime;
     @Given("a customer {string} who has chosen the restaurant {string}")
     public void aCustomerWhoHasChosenTheRestaurant(String customerName, String restaurantName) {
         customer = new Customer(customerName, "Some Surname");
-        restaurant = new Restaurant(restaurantName);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant(restaurantName, "7 avenue verte", openingTime);
         //order = new Order(1, customer, restaurant, dishes);
         orderController = new OrderController();
         orderController.createOrder(1, customer, restaurant);

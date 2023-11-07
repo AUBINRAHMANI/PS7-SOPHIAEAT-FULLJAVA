@@ -13,14 +13,17 @@ class OrderTest {
     private Customer customer;
     private Restaurant restaurant;
     private ArrayList<Dish> dishes;
+    private OpeningTime openingTime;
 
     @BeforeEach
     void setUp() {
         customer = new Customer(1,"John", "Doe");
         dishes = new ArrayList<>();
         dishes.add(new Dish("Hamburger", 10));
-
-        restaurant = new Restaurant("McDonalds","123 Main St" , dishes);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant("McDonalds","123 Main St" , dishes, openingTime);
 
         order = new Order(1, customer, restaurant, dishes);
     }
@@ -57,7 +60,7 @@ class OrderTest {
 
     @Test
     void setRestaurant() {
-        Restaurant newRestaurant = new Restaurant("Burger King","456 Main St" , dishes);
+        Restaurant newRestaurant = new Restaurant("Burger King","456 Main St" , dishes, openingTime);
         order.setRestaurant(newRestaurant);
         assertEquals(newRestaurant, order.getRestaurant());
     }

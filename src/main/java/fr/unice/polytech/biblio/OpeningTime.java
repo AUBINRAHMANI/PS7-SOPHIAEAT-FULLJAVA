@@ -24,4 +24,6 @@ public class OpeningTime {
     public void setClosingHour(HourTime closingHour) {
         this.closingHour = closingHour;
     }
+
+
 }

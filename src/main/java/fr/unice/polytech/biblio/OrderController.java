@@ -61,7 +61,7 @@ public class OrderController {
         else System.out.println("Please Validate your Order before");
     }
 */
-    public void validateOrder(Order order){
+    public void validateOrder(Order order, HourTime currentTime){
        if(order.getDishes()==null) {
            System.out.println("The order is empty please");
        }
