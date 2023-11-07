@@ -63,9 +63,9 @@ public class Restaurant {
         return null;
     }
 
-    /*public boolean isTimeValid(HourTime hourTime) {
+    public boolean isTimeValid(HourTime hourTime) {
         return hourTime.compareTo(openingTime.getOpeningHour()) >= 0 && hourTime.compareTo(openingTime.getOpeningHour()) <= 0;
-    }*/
+    }
 
     //a modifier
     public void orderGetReady(Order order){
