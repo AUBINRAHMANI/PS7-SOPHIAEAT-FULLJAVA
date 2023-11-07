@@ -91,11 +91,16 @@ public class OrderController {
                System.out.println("The order can't be validated");
            }
            else {
-               order.setOrderState(OrderState.VALIDATED);
-               System.out.println(2);
-               System.out.println(order.getPayementSystem());
-               order.getPayementSystem().setPayementState(PayementState.UNLOCK);
-               System.out.println(order.getPayementSystem());
+               if(order.getRestaurant().isTimeValid(currentTime)) {
+                   order.setOrderState(OrderState.VALIDATED);
+                   System.out.println(2);
+                   System.out.println(order.getPayementSystem());
+                   order.getPayementSystem().setPayementState(PayementState.UNLOCK);
+                   System.out.println(order.getPayementSystem());
+               }
+               else {
+                   System.out.println("You can't order out of the restaurant opening time");
+               }
            }
        }
     }
