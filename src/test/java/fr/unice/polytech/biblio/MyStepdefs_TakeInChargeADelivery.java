@@ -1,9 +1,12 @@
 package fr.unice.polytech.biblio;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.hu.De;
+
+import static org.junit.Assert.assertEquals;
 
 public class MyStepdefs_TakeInChargeADelivery {
 
@@ -19,25 +22,34 @@ public class MyStepdefs_TakeInChargeADelivery {
 
 
 
-        @Given("a deliverer {string}")
-        public void a_deliverer(String delivererName) {
-            // Add your code here to create a deliverer
+        @Given("a deliverer {string},")
+        public void aDeliverer(String delivererName) {
+                deliverer = new Deliverer(delivererName, "Jacky");
+        }
+
+
+        @When("the deliverer {string} selects to take charge of a delivery,")
+        public void theDelivererSelectsToTakeChargeOfADelivery(String arg0) {
+                order = new Order(1, new Customer("Jean", "Bon"), new Restaurant("McDo"));
+                order.setOrderState(OrderState.READY_TO_DELIVER);
+                orderController = new OrderController();
+                orderController.createOrder(1, new Customer("Jean", "Bon"), new Restaurant("McDo"));
+                deliverer.TakeInChargeAnOrder(order);
+        }
+
+
+        @Then("the delivery is assigned to the deliverer {string}")
+        public void theDeliveryIsAssignedToTheDeliverer(String arg0) {
 
         }
 
-        @When("the deliverer {string} selects to take charge of a delivery")
-        public void the_deliverer_selects_to_take_charge_of_a_delivery(String delivererName) {
-            // Add your code here to simulate the delivery assignment process
 
-
+        @And("is updated “In process delivery”")
+        public void isUpdatedInProcessDelivery() {
+                assertEquals(OrderState.IN_PROGRESS_DELIVERY, order.getOrderState());
         }
 
-        @Then("the delivery is assigned to the deliverer {string} and is updated {string}")
-        public void the_delivery_is_assigned_to_the_deliverer_and_is_updated(String delivererName, String status) {
-            // Add your code here to check if the delivery is assigned to the correct deliverer and has the correct status
 
-
-        }
-    }
+}
 
 

@@ -3,7 +3,7 @@ Feature: Take in charge a delivery
 
 
   Scenario:  Take in charge a delivery
-  GIVEN a deliverer "Jacky",
-  WHEN the deliverer "Jacky" selects to take charge of a delivery,
-  THEN the delivery is assigned to the deliverer "Jacky."
-  AND is updated “In process delivery”
+  Given a deliverer "Jacky",
+  When the deliverer "Jacky" selects to take charge of a delivery,
+  Then the delivery is assigned to the deliverer "Jacky."
+  And is updated “In process delivery”
