@@ -18,16 +18,18 @@ public class Restaurant {
         this.openingTime = openingTime;
     }
 
-    public Restaurant(String name, String address, ArrayList<Dish> dishes) {
+    public Restaurant(String name, String address, ArrayList<Dish> dishes, OpeningTime openingTime) {
         this.name = name;
         this.address = address;
         this.dishes = dishes;
+        this.openingTime = openingTime;
     }
 
-    public Restaurant(String restaurantName) {
-        this.name = restaurantName;
-        this.address = "";
-        this.dishes = new ArrayList<Dish>();
+    public Restaurant(String name, String address, OpeningTime openingTime) {
+        this.name = name;
+        this.address = address;
+        this.openingTime = openingTime;
+        this.dishes = new ArrayList<>();
     }
 
 
@@ -60,6 +62,10 @@ public class Restaurant {
         }
         return null;
     }
+
+    /*public boolean isTimeValid(HourTime hourTime) {
+        return hourTime.compareTo(openingTime.getOpeningHour()) >= 0 && hourTime.compareTo(openingTime.getOpeningHour()) <= 0;
+    }*/
 
     //a modifier
     public void orderGetReady(Order order){

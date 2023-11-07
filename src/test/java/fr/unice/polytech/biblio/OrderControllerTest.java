@@ -28,9 +28,11 @@ class OrderControllerTest {
 
         dishes.add(new Dish("Hamburger", 10));
 
-
-        restaurant = new Restaurant("McDonalds", "123 Main St", dishes);
-        newRestaurant = new Restaurant("Burger King", "456 Elm St", dishes);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        OpeningTime openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant("McDonalds", "123 Main St",dishes, openingTime);
+        newRestaurant = new Restaurant("Burger King", "456 Elm St", dishes, openingTime);
 
         order = new Order(1, customer, restaurant, dishes);
 

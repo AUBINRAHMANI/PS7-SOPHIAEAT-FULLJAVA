@@ -9,11 +9,15 @@ public class MyStepdefs_DeliverADelivery {
 
         Deliverer deliverer;
         Order order;
+        OpeningTime openingTime;
 
     @Given("a deliverer {string} has retrieved the order for delivery,")
     public void aDelivererHasRetrievedTheOrderForDelivery(String delivererName) {
         deliverer = new Deliverer(delivererName, "Lastname");
-        order = new Order(1, new Customer("Jean", "Bon"), new Restaurant("McDo"));
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        order = new Order(1, new Customer("Jean", "Bon"), new Restaurant("McDo", "27 avenue des champs", openingTime));
         order.addDish(new Dish("BigMac", 10));
         order.setOrderState(OrderState.READY_TO_DELIVER);
     }

@@ -11,16 +11,11 @@ import static org.junit.Assert.assertEquals;
 public class MyStepdefs_TakeInChargeADelivery {
 
         Deliverer deliverer;
-
         Restaurant restaurant;
-
         Order order;
-
         Dish dish;
-
         OrderController orderController;
-
-
+        OpeningTime openingTime;
 
         @Given("a deliverer {string},")
         public void aDeliverer(String delivererName) {
@@ -30,10 +25,14 @@ public class MyStepdefs_TakeInChargeADelivery {
 
         @When("the deliverer {string} selects to take charge of a delivery,")
         public void theDelivererSelectsToTakeChargeOfADelivery(String arg0) {
-                order = new Order(1, new Customer("Jean", "Bon"), new Restaurant("McDo"));
+                HourTime openingHour = new HourTime(10,0);
+                HourTime closingHour = new HourTime(22,0);
+                openingTime = new OpeningTime(openingHour, closingHour);
+                restaurant = new Restaurant("McDonalds", "34 rue de montmartre", openingTime);
+                order = new Order(1, new Customer("Jean", "Bon"), restaurant);
                 order.setOrderState(OrderState.READY_TO_DELIVER);
                 orderController = new OrderController();
-                orderController.createOrder(1, new Customer("Jean", "Bon"), new Restaurant("McDo"));
+                orderController.createOrder(1, new Customer("Jean", "Bon"), restaurant);
                 deliverer.TakeInChargeAnOrder(order);
         }
 

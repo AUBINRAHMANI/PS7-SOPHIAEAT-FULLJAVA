@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import javax.management.openmbean.OpenMBeanInfo;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -23,14 +24,17 @@ public class MyStepdefs_validOrder {
   //  ArrayList<Dish> dishes = new ArrayList<>();
 
     OrderController orderController;
-
+    OpeningTime openingTime;
     //PayementSystem payementSystem;
 
 
     @Given("a customer {string} {string} who has already chosen the restaurant {string} and with a filled order")
     public void aCustomerWhohasAlreadyChosenTheRestaurant(String customerName,String customerSurname, String restaurantName) {
         customer = new Customer(customerName, customerSurname);
-        restaurant = new Restaurant(restaurantName);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant(restaurantName, "45 boulevard massena", openingTime);
         //order = new Order(1, customer, restaurant, dishes);
         //payementSystem = new PayementSystem(1);
         orderController = new OrderController();
@@ -44,7 +48,8 @@ public class MyStepdefs_validOrder {
         dish = new Dish("hamburger", 10);
         orderController.addDish(dish);
        // System.out.println(order.getPriceOrder());
-        orderController.validateOrder(order);
+        HourTime currentTime = new HourTime(17,15);
+        orderController.validateOrder(order, currentTime);
        // System.out.println("1");
        // System.out.println(this.payementSystem.getPayementState());
 

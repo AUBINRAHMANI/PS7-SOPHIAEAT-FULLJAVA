@@ -13,21 +13,20 @@ import static org.junit.Assert.*;
 public class MyStepdefs_ValidAPreparation {
     Customer customer;
     private Restaurant restaurant;
-
     OrderController orderController;
-
     Dish pizza;
-
     Order order;
-
     Cook cook;
-
+    OpeningTime openingTime;
 
 
     @Given("restaurant {string} with an order from {string} in the preparation in progress status")
-    public void OrderInPreparedStatus(String restautantName, String customerName){
+    public void OrderInPreparedStatus(String restaurantName, String customerName){
         customer = new Customer(customerName,"huzog");
-        restaurant = new Restaurant(restautantName);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant(restaurantName, "6 rue de l'eglise", openingTime);
         pizza = new Dish("pizza",15);
 
         restaurant.addDish(pizza);
@@ -41,7 +40,8 @@ public class MyStepdefs_ValidAPreparation {
 
         System.out.println(order.getPriceOrder());
 
-        orderController.validateOrder(order);
+        HourTime currentTime = new HourTime(16,0);
+        orderController.validateOrder(order, currentTime);
         orderController.pay(order,15);
         orderController.notify(restaurant);
 

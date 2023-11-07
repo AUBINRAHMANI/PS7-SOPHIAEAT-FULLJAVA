@@ -16,16 +16,12 @@ public class MyStepdefs {
 
 
     Restaurant restaurant;
-
     Customer customer;
-
     Dish dish;
-
     OrderController orderController;
-
     Order order;
-
    // ArrayList<Dish> dishes = new ArrayList<Dish>();
+    OpeningTime openingTime;
 
     @Given("a customer {string} {string}")
     public void aCustomer(String customerName, String customerSurname){
@@ -35,7 +31,10 @@ public class MyStepdefs {
 
     @When("{string} choose the restaurant {string}")
     public void chooseTheRestaurant(String customerName, String restaurantName) {
-        restaurant = new Restaurant(restaurantName);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant(restaurantName, "98 rue de la paix", openingTime);
         dish = new Dish("pizza",15);
         restaurant.addDish(dish);
         //order = new Order(1, customer, restaurant, dishes);

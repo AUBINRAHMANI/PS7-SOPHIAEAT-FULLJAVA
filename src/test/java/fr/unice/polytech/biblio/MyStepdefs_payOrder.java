@@ -14,16 +14,12 @@ public class MyStepdefs_payOrder {
 
     Order order;
     OrderController orderController;
-
     Customer customer;
-
     Dish dish ;
-
     Restaurant restaurant;
-
     Dish pizza;
-
     //ArrayList<Dish> dishes;
+    OpeningTime openingTime;
 
 
     @Given("a customer {string} who has an order with one dish {string} in the restaurant {string}")
@@ -31,7 +27,10 @@ public class MyStepdefs_payOrder {
         customer = new Customer(customerName,"huzog");
         dish = new Dish(dishName,20);
         pizza = new Dish("pizza",30);
-        restaurant = new Restaurant(nameRestaurant);
+        HourTime openingHour = new HourTime(10,0);
+        HourTime closingHour = new HourTime(22,0);
+        openingTime = new OpeningTime(openingHour, closingHour);
+        restaurant = new Restaurant(nameRestaurant, "17 boulevard de l'aiguille", openingTime);
         restaurant.addDish(dish);
         restaurant.addDish(pizza);
 
@@ -45,7 +44,8 @@ public class MyStepdefs_payOrder {
 
     @When("{string} pays the order")
     public void customerPaysTheOrder(String customerName){
-        orderController.validateOrder(order);
+        HourTime currentTime = new HourTime(15,45);
+        orderController.validateOrder(order, currentTime);
         assertEquals(order.getOrderState(),OrderState.VALIDATED);
         orderController.pay(order,20);
 
