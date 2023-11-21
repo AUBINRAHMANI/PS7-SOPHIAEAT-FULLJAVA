@@ -5,7 +5,9 @@ import org.mockito.internal.matchers.Or;
 import java.util.ArrayList;
 
 public class OrderController {
-    private Order order;
+    private SimpleOrder order;
+
+    private ArrayList<SimpleOrder> listOrder = new ArrayList<SimpleOrder>();
 
     private PayementSystem payementSystem;
 
@@ -15,13 +17,15 @@ public class OrderController {
     }
 
     public void createOrder(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
-        this.order = new Order(id, customer, restaurant, dishes);
+        this.order = new SimpleOrder(id, customer, restaurant, dishes);
+        listOrder.add(this.order);
+
         payementSystem = new PayementSystem(id);
 
     }
 
     public void createOrder(int id, Customer customer, Restaurant restaurant) {
-        this.order = new Order(id, customer, restaurant);
+        this.order = new SimpleOrder(id, customer, restaurant);
         payementSystem = new PayementSystem(id);
 
     }
@@ -79,7 +83,7 @@ public class OrderController {
        }
     }
 
-    public Order getOrder() {
+    public SimpleOrder getOrder() {
         return this.order;
     }
 

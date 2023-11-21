@@ -68,7 +68,7 @@ public class Restaurant {
     }*/
 
     //a modifier
-    public void orderGetReady(Order order){
+    public void orderGetReady(SimpleOrder order){
         order.setOrderState(OrderState.READY_TO_COOK);
     }
 }

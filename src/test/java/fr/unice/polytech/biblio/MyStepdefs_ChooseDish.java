@@ -15,7 +15,7 @@ public class MyStepdefs_ChooseDish {
     Customer customer;
     Dish dish;
     OrderController orderController;
-    Order order;
+    SimpleOrder order;
     ArrayList<Dish> dishes;
     OpeningTime openingTime;
     @Given("a customer {string} who has chosen the restaurant {string}")

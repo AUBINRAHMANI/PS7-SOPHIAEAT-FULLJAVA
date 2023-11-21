@@ -9,18 +9,26 @@ public class SimpleOrder extends AbstractOrder{
 
     private ArrayList<Dish> dishes;
 
-    public SimpleOrder(int id, Customer customer,OrderState orderState, Restaurant restaurant, int priceOrder){
-        super(id,customer,orderState);
+    public SimpleOrder(int id, Customer customer, Restaurant restaurant, int priceOrder){
+        super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = priceOrder;
 
     }
 
-    public SimpleOrder(int id, Customer customer,OrderState orderState, Restaurant restaurant){
-        super(id,customer,orderState);
+    public SimpleOrder(int id, Customer customer, Restaurant restaurant){
+        super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = 0;
     }
+
+    public SimpleOrder(int id, Customer customer, Restaurant restaurant,ArrayList<Dish> dishes){
+        super(id,customer);
+        this.restaurant = restaurant;
+        this.priceOrder = 0;
+        this.dishes=dishes;
+    }
+
     @Override
     public int getId() {
         return id;
@@ -53,6 +61,10 @@ public class SimpleOrder extends AbstractOrder{
 
     public float getPriceOrder(){
         return this.priceOrder;
+    }
+
+    public void setOrderState(OrderState orderState){
+        this.orderState=orderState;
     }
 
 

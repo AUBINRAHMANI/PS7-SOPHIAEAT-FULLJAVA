@@ -6,14 +6,14 @@ public class GroupOrder extends AbstractOrder {
 
     private ArrayList<AbstractOrder> orders;
 
-    public GroupOrder(int id, Customer customer, OrderState orderState, ArrayList<AbstractOrder> orders){
-        super(id,customer,orderState);
+    public GroupOrder(int id, Customer customer, ArrayList<AbstractOrder> orders){
+        super(id,customer);
         this.orders = orders;
 
     }
 
-    public GroupOrder(int id, Customer customer, OrderState orderState){
-        super(id,customer,orderState);
+    public GroupOrder(int id, Customer customer){
+        super(id,customer);
         this.orders = new ArrayList<AbstractOrder>();
     }
 
