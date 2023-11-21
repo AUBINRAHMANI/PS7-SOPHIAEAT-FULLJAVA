@@ -33,17 +33,18 @@ public class MyStepdefs_ValidAPreparation {
         orderController = new OrderController();
 
         orderController.createOrder(1,customer,restaurant);
-        orderController.chooseRestaurant(restaurant);
-        orderController.addDish(pizza);
+        order = orderController.getOrderById(1);
+        orderController.chooseRestaurant(order, restaurant);
+        orderController.addDish(order, pizza);
 
-        order = orderController.getOrder();
+
 
         System.out.println(order.getPriceOrder());
 
         HourTime currentTime = new HourTime(16,0);
         orderController.validateOrder(order, currentTime);
         orderController.pay(order,15);
-        orderController.notify(restaurant);
+        orderController.notify(order, restaurant);
 
         cook = new Cook(1,"Obelix","Potion",restaurant);
         cook.prepareOrder(order);

@@ -40,15 +40,15 @@ public class MyStepdefs {
         //order = new Order(1, customer, restaurant, dishes);
         orderController = new OrderController();
         orderController.createOrder(1, customer, restaurant);
-        order = orderController.getOrder();
-        orderController.chooseRestaurant(restaurant);
+        order = orderController.getOrderById(1);
+        orderController.chooseRestaurant(order, restaurant);
     }
 
     @Then("he will be able to add dishes from the restaurant {string}")
     public void heWillBeAbleToAddDishesFromTheRestaurant(String restaurantName) {
-        assertNotNull(orderController.getOrder());
+        assertNotNull(order);
         dish = restaurant.getDishByName("pizza");
-        orderController.addDish(dish);
+        orderController.addDish(order, dish);
 //
 //
         //assertTrue(Boolean.parseBoolean(orderController.getCurrentOrder().toString()));
