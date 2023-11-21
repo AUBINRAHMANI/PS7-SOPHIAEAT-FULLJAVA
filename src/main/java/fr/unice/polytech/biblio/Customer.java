@@ -9,7 +9,6 @@ public class Customer extends User{
         super(name, surname);
     }
 
-
     public String toString() {
         return "Customer [id=" + id + ", name=" + name + ", surname=" + surname + "]";
     }
