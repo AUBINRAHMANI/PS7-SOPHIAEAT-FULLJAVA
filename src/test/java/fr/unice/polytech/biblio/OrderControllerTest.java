@@ -43,24 +43,24 @@ class OrderControllerTest {
 
     @Test
     void createOrder() {
-        assertNotNull(orderController.getOrder());
+        assertNotNull(order);
     }
 
     @Test
     void addDish() {
         Dish newDish = new Dish( "Fries", 5);
-        orderController.addDish(newDish);
+        orderController.addDish(order, newDish);
 
-        assertTrue(((orderController.getOrder())).getDishes().contains(newDish));
-        assertEquals((orderController.getOrder()).getDishes(), dishes);
+        assertTrue(((orderController.getOrderById(1))).getDishes().contains(newDish));
+        assertEquals((orderController.getOrderById(1)).getDishes(), dishes);
         // System.out.println((orderController.getOrder()).getDishes());
     }
 
 
     @Test
     void chooseRestaurant() {
-        orderController.chooseRestaurant(newRestaurant);
-        assertEquals(newRestaurant, orderController.getOrder().getRestaurant());
+        orderController.chooseRestaurant(order, newRestaurant);
+        assertEquals(newRestaurant, orderController.getOrderById(1).getRestaurant());
 
     }
 

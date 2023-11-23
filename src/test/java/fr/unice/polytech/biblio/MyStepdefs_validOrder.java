@@ -39,14 +39,14 @@ public class MyStepdefs_validOrder {
         //payementSystem = new PayementSystem(1);
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
-        order=orderController.getOrder();
-        orderController.chooseRestaurant(restaurant);
+        order=orderController.getOrderById(1);
+        orderController.chooseRestaurant(order, restaurant);
     }
 
     @When("{string} decides to validate order")
     public void aCustomerValidateOrder(String customerName) {
         dish = new Dish("hamburger", 10);
-        orderController.addDish(dish);
+        orderController.addDish(order, dish);
        // System.out.println(order.getPriceOrder());
         HourTime currentTime = new HourTime(17,15);
         orderController.validateOrder(order, currentTime);
@@ -57,7 +57,7 @@ public class MyStepdefs_validOrder {
 
     @Then("The order is confirmed, and {string} can pay his order")
     public void orderIsConfirmedAndWeCanPayTheOrder(String customerName){
-        PayementSystem payementSystem = orderController.getPayementSystem();
+        PayementSystem payementSystem = order.getPayementSystem();
 
         assertEquals(order.getOrderState(),OrderState.VALIDATED);
         assertEquals(PayementState.UNLOCK, payementSystem.getPayementState());

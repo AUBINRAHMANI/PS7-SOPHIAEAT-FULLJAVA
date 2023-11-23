@@ -23,10 +23,10 @@ public class MyStepdefs_CancelOrder {
         restaurant = new Restaurant(restaurantName, "1 rue du Coulon", openingTime);
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
-        order=orderController.getOrder();
-        orderController.chooseRestaurant(restaurant);
+        order=orderController.getOrderById(1);
+        orderController.chooseRestaurant(order, restaurant);
         dish = new Dish("hamburger", 10);
-        orderController.addDish(dish);
+        orderController.addDish(order, dish);
     }
 
     @When("{string} decides to cancel his order")

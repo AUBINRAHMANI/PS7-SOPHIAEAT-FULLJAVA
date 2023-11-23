@@ -25,16 +25,13 @@ public class HourTime {
         this.minute = minute;
     }
 
-    /*public int compareTo(HourTime hourTime) {
+    public int compareTo(HourTime hourTime) {
         if(this.hour > hourTime.getHour() || (this.hour == hourTime.getHour() && this.minute > hourTime.getMinute())) {
             return 1;
         }
         if(this.hour < hourTime.getHour() || (this.hour == hourTime.getHour() && this.minute < hourTime.getMinute())) {
             return -1;
         }
-        if(this.hour == hourTime.getHour() && this.minute == hourTime.getMinute()) {
-            return 0;
-        }
-
-    }*/
+        return 0;
+    }
 }

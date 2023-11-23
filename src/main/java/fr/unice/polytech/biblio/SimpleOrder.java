@@ -9,6 +9,8 @@ public class SimpleOrder extends AbstractOrder{
 
     private ArrayList<Dish> dishes;
 
+    private PayementSystem payementSystem;
+
     public SimpleOrder(int id, Customer customer, Restaurant restaurant, int priceOrder){
         super(id,customer);
         this.restaurant = restaurant;
@@ -67,6 +69,14 @@ public class SimpleOrder extends AbstractOrder{
         this.orderState=orderState;
     }
 
+    public void setPayementSystem(PayementSystem payementSystem){
+        this.payementSystem = payementSystem;
+
+    }
+
+    public PayementSystem getPayementSystem(){
+        return this.payementSystem;
+    }
 
 
 }

@@ -28,8 +28,8 @@ public class MyStepdefs_ChooseDish {
         //order = new Order(1, customer, restaurant, dishes);
         orderController = new OrderController();
         orderController.createOrder(1, customer, restaurant);
-        order = orderController.getOrder();
-        orderController.chooseRestaurant(restaurant);
+        order = orderController.getOrderById(1);
+        orderController.chooseRestaurant(order, restaurant);
 
 
     }
@@ -37,13 +37,13 @@ public class MyStepdefs_ChooseDish {
     @When("{string} add a dish {string}")
     public void addADish(String customerName, String dish) {
         this.dish = new Dish(dish,10);
-        orderController.addDish(this.dish);
+        orderController.addDish(order, this.dish);
         System.out.println(order.getPriceOrder());
     }
 
     @Then("the order price will increase by {string} ‘s price")
     public void theOrderPriceWillIncreaseBySPrice(String price) {
-        assertNotNull(orderController.getOrder());
+        assertNotNull(order);
 
     }
 
