@@ -20,13 +20,14 @@ public class SimpleOrder extends AbstractOrder{
         super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = priceOrder;
-
+        this.dishes = new ArrayList<>();
     }
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant){
         super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = 0;
+        this.dishes = new ArrayList<>();
     }
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant,ArrayList<Dish> dishes){
