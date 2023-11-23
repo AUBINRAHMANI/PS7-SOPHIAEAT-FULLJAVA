@@ -1,4 +1,4 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Restaurant;
 
 public class OpeningTime {
     private HourTime openingHour;

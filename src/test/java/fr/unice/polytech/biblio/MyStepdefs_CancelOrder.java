@@ -1,5 +1,10 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,12 +16,12 @@ public class MyStepdefs_CancelOrder {
     Customer customer;
     Restaurant restaurant;
     OrderController orderController;
-    Order order;
+    SimpleOrder order;
     Dish dish;
     OpeningTime openingTime;
     @Given("a customer {string} who has already chosen the restaurant {string} and with a filled order")
     public void aCustomerWhoHasAlreadyChosenTheRestaurantAndWithAFilledOrder(String customerName, String restaurantName) {
-        customer = new Customer(customerName, "surname");
+        customer = new Customer(1,customerName, "surname");
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
         openingTime = new OpeningTime(openingHour, closingHour);

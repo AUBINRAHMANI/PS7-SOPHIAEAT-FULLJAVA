@@ -1,4 +1,10 @@
 package fr.unice.polytech.biblio;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Person.Deliverer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,11 +19,11 @@ public class MyStepdefs_DeliverADelivery {
 
     @Given("a deliverer {string} has retrieved the order for delivery,")
     public void aDelivererHasRetrievedTheOrderForDelivery(String delivererName) {
-        deliverer = new Deliverer(delivererName, "Lastname");
+        deliverer = new Deliverer(3,delivererName, "Lastname");
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
         openingTime = new OpeningTime(openingHour, closingHour);
-        order = new Order(1, new Customer("Jean", "Bon"), new Restaurant("McDo", "27 avenue des champs", openingTime));
+        order = new Order(1, new Customer(1,"Jean", "Bon"), new Restaurant("McDo", "27 avenue des champs", openingTime));
         order.addDish(new Dish("BigMac", 10));
         order.setOrderState(OrderState.READY_TO_DELIVER);
     }

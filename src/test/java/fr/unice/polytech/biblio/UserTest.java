@@ -3,10 +3,9 @@ package fr.unice.polytech.biblio;
 import static org.junit.jupiter.api.Assertions.*;
 
 
+import fr.unice.polytech.biblio.Person.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     private User user;

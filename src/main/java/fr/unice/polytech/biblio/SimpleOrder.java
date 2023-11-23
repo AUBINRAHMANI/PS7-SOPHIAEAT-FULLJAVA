@@ -1,5 +1,10 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+
 import java.util.ArrayList;
 
 public class SimpleOrder extends AbstractOrder{
@@ -78,5 +83,9 @@ public class SimpleOrder extends AbstractOrder{
         return this.payementSystem;
     }
 
+    public boolean pay(int prix){
+        return getPriceOrder() == prix;
+
+    }
 
 }

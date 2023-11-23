@@ -1,14 +1,13 @@
 package fr.unice.polytech.biblio;
 
-import fr.unice.polytech.biblio.Customer;
-import fr.unice.polytech.biblio.Dish;
-import fr.unice.polytech.biblio.OrderController;
-import fr.unice.polytech.biblio.Restaurant;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -19,13 +18,13 @@ public class MyStepdefs {
     Customer customer;
     Dish dish;
     OrderController orderController;
-    Order order;
+    SimpleOrder order;
    // ArrayList<Dish> dishes = new ArrayList<Dish>();
     OpeningTime openingTime;
 
     @Given("a customer {string} {string}")
     public void aCustomer(String customerName, String customerSurname){
-        customer = new Customer(customerName, customerSurname);
+        customer = new Customer(2,customerName, customerSurname);
     }
 
 

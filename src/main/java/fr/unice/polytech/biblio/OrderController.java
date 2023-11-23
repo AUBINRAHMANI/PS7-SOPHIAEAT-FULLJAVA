@@ -1,8 +1,12 @@
 package fr.unice.polytech.biblio;
 
-import org.mockito.internal.matchers.Or;
+import fr.unice.polytech.biblio.Payement.PayementState;
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +41,7 @@ public class OrderController {
 
 
 
-    public void addDish(Order order,Dish dish) {
+    public void addDish(SimpleOrder order, Dish dish) {
         if (order != null) {
             order.addDish(dish);
         } else {
@@ -45,7 +49,7 @@ public class OrderController {
         }
     }
 
-    public void chooseRestaurant(Order order, Restaurant restaurant) {
+    public void chooseRestaurant(SimpleOrder order, Restaurant restaurant) {
         if (order != null) {
             order.setRestaurant(restaurant);
         } else {
@@ -90,7 +94,7 @@ public class OrderController {
         else System.out.println("Please Validate your Order before");
     }
 */
-    public void validateOrder(Order order, HourTime currentTime){
+    public void validateOrder(SimpleOrder order, HourTime currentTime){
        if(order.getDishes()==null) {
            System.out.println("The order is empty please");
        }
@@ -125,7 +129,7 @@ public class OrderController {
 
     }
 
-    public void pay(Order order, int prix){
+    public void pay(SimpleOrder order, int prix){
         Restaurant restaurant = order.getRestaurant();
         if(order.getPayementSystem().getPayementState().equals(PayementState.UNLOCK)){
            if(order.pay(prix))
@@ -144,11 +148,11 @@ public class OrderController {
 
     }
 
-    public void validatePayement(Order order){
+    public void validatePayement(SimpleOrder order){
         order.getPayementSystem().setPayementState(PayementState.VALID);
     }
 
-    public void cancelOrder(Order order) {
+    public void cancelOrder(SimpleOrder order) {
         order.setOrderState(OrderState.CANCELLED);
         order.getPayementSystem().setPayementState(PayementState.LOCK);
     }

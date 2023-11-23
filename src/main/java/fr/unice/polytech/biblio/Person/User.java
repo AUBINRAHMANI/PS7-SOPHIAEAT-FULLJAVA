@@ -1,4 +1,4 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Person;
 
 public class User {
     public int id;
@@ -11,12 +11,10 @@ public class User {
         this.surname = surname;
     }
 
-    public User(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
-
-
+//    public User(String name, String surname) {
+//        this.name = name;
+//        this.surname = surname;
+//    }
 
 
     public int getId() {

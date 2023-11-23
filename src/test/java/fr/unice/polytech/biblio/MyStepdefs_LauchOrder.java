@@ -1,12 +1,14 @@
 package fr.unice.polytech.biblio;
 
-import io.cucumber.java.bs.A;
+import fr.unice.polytech.biblio.Person.Cook;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.mockito.internal.matchers.Or;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,14 +19,14 @@ public class MyStepdefs_LauchOrder {
     Dish pizza;
    // ArrayList<Dish> dishes;
     OrderController orderController;
-    Order order;
+    SimpleOrder order;
     Cook cook;
     OpeningTime openingTime;
 
     @Given("restaurant {string} with a paid order for user {string}")
     public void paidOrderofUser(String restaurantName, String userName){
 
-        Customer customer = new Customer(userName,"huzog");
+        Customer customer = new Customer(2,userName,"huzog");
         pizza = new Dish("pizza", 15);
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);

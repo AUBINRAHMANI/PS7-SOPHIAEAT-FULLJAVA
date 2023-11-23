@@ -1,5 +1,7 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Customer;
+
 public abstract class AbstractOrder {
 
     protected int id;

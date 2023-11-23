@@ -1,12 +1,14 @@
 package fr.unice.polytech.biblio;
 
-import io.cucumber.java.bs.A;
+import fr.unice.polytech.biblio.Person.Cook;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.security.interfaces.DSAKey;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -15,14 +17,14 @@ public class MyStepdefs_ValidAPreparation {
     private Restaurant restaurant;
     OrderController orderController;
     Dish pizza;
-    Order order;
+    SimpleOrder order;
     Cook cook;
     OpeningTime openingTime;
 
 
     @Given("restaurant {string} with an order from {string} in the preparation in progress status")
     public void OrderInPreparedStatus(String restaurantName, String customerName){
-        customer = new Customer(customerName,"huzog");
+        customer = new Customer(2,customerName,"huzog");
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
         openingTime = new OpeningTime(openingHour, closingHour);

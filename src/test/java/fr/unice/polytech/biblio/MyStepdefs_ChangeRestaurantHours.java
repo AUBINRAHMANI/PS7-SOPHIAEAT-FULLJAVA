@@ -1,5 +1,9 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.RestaurantManager;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

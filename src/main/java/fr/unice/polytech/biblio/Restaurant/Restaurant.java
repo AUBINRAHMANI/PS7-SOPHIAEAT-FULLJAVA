@@ -1,5 +1,8 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Restaurant;
 
+
+import fr.unice.polytech.biblio.OrderState;
+import fr.unice.polytech.biblio.SimpleOrder;
 
 import java.util.ArrayList;
 
