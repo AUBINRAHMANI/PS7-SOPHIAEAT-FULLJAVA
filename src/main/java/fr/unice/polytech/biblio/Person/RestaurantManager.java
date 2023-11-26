@@ -1,7 +1,6 @@
 package fr.unice.polytech.biblio.Person;
 
-import fr.unice.polytech.biblio.Person.Customer;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
 public class RestaurantManager extends Customer {
@@ -17,8 +16,8 @@ public class RestaurantManager extends Customer {
 //        this.restaurant = restaurant;
 //    }
 
-    public void setOpeningTime(Restaurant restaurant, OpeningTime openingTime){
-        restaurant.setOpeningTime(openingTime);
+    public void setOpeningTime(Restaurant restaurant, Schedules openingTime){
+        restaurant.setSchedules(openingTime);
     }
 
     public Restaurant getRestaurant() {

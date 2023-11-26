@@ -11,27 +11,27 @@ public class Restaurant {
     private String name;
     private String address;
     private ArrayList<Dish> dishes;
-    private OpeningTime openingTime;
+    private Schedules schedules;
 
-    public OpeningTime getOpeningTime() {
-        return openingTime;
+    public Schedules getSchedules() {
+        return schedules;
     }
 
-    public void setOpeningTime(OpeningTime openingTime) {
-        this.openingTime = openingTime;
+    public void setSchedules(Schedules schedules) {
+        this.schedules = schedules;
     }
 
-    public Restaurant(String name, String address, ArrayList<Dish> dishes, OpeningTime openingTime) {
+    public Restaurant(String name, String address, ArrayList<Dish> dishes, Schedules schedules) {
         this.name = name;
         this.address = address;
         this.dishes = dishes;
-        this.openingTime = openingTime;
+        this.schedules = schedules;
     }
 
-    public Restaurant(String name, String address, OpeningTime openingTime) {
+    public Restaurant(String name, String address, Schedules schedules) {
         this.name = name;
         this.address = address;
-        this.openingTime = openingTime;
+        this.schedules = schedules;
         this.dishes = new ArrayList<>();
     }
 
@@ -67,7 +67,7 @@ public class Restaurant {
     }
 
     public boolean isTimeValid(HourTime hourTime) {
-        return hourTime.compareTo(openingTime.getOpeningHour()) >= 0 && hourTime.compareTo(openingTime.getClosingHour()) <= 0;
+        return hourTime.compareTo(schedules.getOpeningHour()) >= 0 && hourTime.compareTo(schedules.getClosingHour()) <= 0;
     }
 
     //a modifier

@@ -1,4 +1,4 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Person;
 
 import static org.junit.jupiter.api.Assertions.*;
 

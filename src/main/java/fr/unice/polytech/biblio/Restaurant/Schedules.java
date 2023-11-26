@@ -1,10 +1,10 @@
 package fr.unice.polytech.biblio.Restaurant;
 
-public class OpeningTime {
+public class Schedules {
     private HourTime openingHour;
     private HourTime closingHour;
 
-    public OpeningTime(HourTime openingHour, HourTime closingHour) {
+    public Schedules(HourTime openingHour, HourTime closingHour) {
         this.openingHour = openingHour;
         this.closingHour = closingHour;
     }

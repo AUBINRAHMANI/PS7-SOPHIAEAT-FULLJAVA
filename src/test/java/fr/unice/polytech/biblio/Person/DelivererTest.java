@@ -1,5 +1,7 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Person;
 
+import fr.unice.polytech.biblio.Order;
+import fr.unice.polytech.biblio.OrderState;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Person.Deliverer;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
