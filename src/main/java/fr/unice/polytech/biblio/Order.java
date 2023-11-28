@@ -7,7 +7,7 @@ import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
 import java.util.ArrayList;
 
-public class Order {
+public class Order {    //To delete car devenue obsolète
     private int id;
     private Customer customer;
     private Restaurant restaurant;

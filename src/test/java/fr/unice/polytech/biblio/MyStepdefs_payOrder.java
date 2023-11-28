@@ -5,7 +5,7 @@ import fr.unice.polytech.biblio.Payement.PayementSystem;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -21,7 +21,7 @@ public class MyStepdefs_payOrder {
     Restaurant restaurant;
     Dish pizza;
     //ArrayList<Dish> dishes;
-    OpeningTime openingTime;
+    Schedules openingTime;
 
 
     @Given("a customer {string} who has an order with one dish {string} in the restaurant {string}")
@@ -31,7 +31,7 @@ public class MyStepdefs_payOrder {
         pizza = new Dish("pizza",30);
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(nameRestaurant, "17 boulevard de l'aiguille", openingTime);
         restaurant.addDish(dish);
         restaurant.addDish(pizza);

@@ -3,7 +3,7 @@ package fr.unice.polytech.biblio;
 import fr.unice.polytech.biblio.Person.RestaurantManager;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,7 +20,7 @@ public class MyStepdefs_ChangeRestaurantMenu {
     Restaurant restaurant;
     @Given("a restaurant manager {string} of the restaurant {string}")
     public void aManagerOfTheRestaurant(String managerName, String restaurantName) {
-        OpeningTime openingTime = new OpeningTime(new HourTime(11,0), new HourTime(17,0));
+        Schedules openingTime = new Schedules(new HourTime(11,0), new HourTime(17,0));
         Dish burger = new Dish("Burger", (float)10.5);
         Dish salad = new Dish("Salad", (float)12);
         ArrayList<Dish> dishes = new ArrayList<>();

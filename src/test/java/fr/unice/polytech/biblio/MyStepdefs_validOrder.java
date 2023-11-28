@@ -5,7 +5,7 @@ import fr.unice.polytech.biblio.Payement.PayementSystem;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -27,7 +27,7 @@ public class MyStepdefs_validOrder {
   //  ArrayList<Dish> dishes = new ArrayList<>();
 
     OrderController orderController;
-    OpeningTime openingTime;
+    Schedules openingTime;
     //PayementSystem payementSystem;
 
 
@@ -36,7 +36,7 @@ public class MyStepdefs_validOrder {
         customer = new Customer(4,customerName, customerSurname);
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(restaurantName, "45 boulevard massena", openingTime);
         //order = new Order(1, customer, restaurant, dishes);
         //payementSystem = new PayementSystem(1);
