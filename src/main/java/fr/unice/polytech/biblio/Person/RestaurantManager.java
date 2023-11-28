@@ -1,13 +1,15 @@
 package fr.unice.polytech.biblio.Person;
 
+
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
 public class RestaurantManager extends Customer {
 
     private Restaurant restaurant;
+
     public RestaurantManager(int id, String name, String surname, Restaurant restaurant) {
         super(id, name, surname);
         this.restaurant = restaurant;
@@ -18,8 +20,9 @@ public class RestaurantManager extends Customer {
 //        this.restaurant = restaurant;
 //    }
 
-    public void setOpeningTime(OpeningTime openingTime){
-        this.restaurant.setOpeningTime(openingTime);
+
+    public void setOpeningTime(Schedules openingTime) {
+        this.restaurant.setSchedules(openingTime);
     }
 
     public void addDishToMenu(Dish dish) {
@@ -31,18 +34,26 @@ public class RestaurantManager extends Customer {
     }
 
     public void changePrice(Dish dish, float newPrice) {
-        for(Dish searchDish : this.restaurant.getDishes()) {
-            if(searchDish.name.equals(dish.name)) {
+        for (Dish searchDish : this.restaurant.getDishes()) {
+            if (searchDish.name.equals(dish.name)) {
                 searchDish.setPrice(newPrice);
             }
         }
-
     }
+
+
+    public void setOpeningTime (Restaurant restaurant, Schedules openingTime){
+            restaurant.setSchedules(openingTime);
+    }
+
 
     public Restaurant getRestaurant() {
         return restaurant;
     }
-    public void setRestaurant(Restaurant restaurant){
+
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
+
+
 }

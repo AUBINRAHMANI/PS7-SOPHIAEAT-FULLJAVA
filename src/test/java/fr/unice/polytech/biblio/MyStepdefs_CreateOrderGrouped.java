@@ -3,7 +3,7 @@ package fr.unice.polytech.biblio;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -30,7 +30,7 @@ public class MyStepdefs_CreateOrderGrouped {
 
     SimpleOrder order;
 
-    OpeningTime openingTime;
+    Schedules openingTime;
 
     HourTime opening;
 
@@ -63,7 +63,7 @@ public class MyStepdefs_CreateOrderGrouped {
 
         opening = new HourTime(18,30);
         closing = new HourTime(1,0);
-        openingTime = new OpeningTime(opening,closing);
+        openingTime = new Schedules(opening,closing);
 
         menu = new ArrayList<Dish>();
         menu.add(dishHamburger);
@@ -72,7 +72,7 @@ public class MyStepdefs_CreateOrderGrouped {
         restaurant = new Restaurant("kebabiste","13 rue des kebabs Nice",menu,openingTime);
 
         orderController = new OrderController();
-        orderGroupBuilder = new OrderGroupBuilder();
+        orderGroupBuilder = new OrderGroupBuilder(  1, customerAlice);
 
 //        orderController.chooseRestaurant(restaurant);
 //

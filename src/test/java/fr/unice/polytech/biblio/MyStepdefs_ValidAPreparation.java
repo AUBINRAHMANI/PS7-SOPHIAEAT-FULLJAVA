@@ -2,7 +2,7 @@ package fr.unice.polytech.biblio;
 
 import fr.unice.polytech.biblio.Person.Cook;
 import fr.unice.polytech.biblio.Person.Customer;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
@@ -19,7 +19,7 @@ public class MyStepdefs_ValidAPreparation {
     Dish pizza;
     SimpleOrder order;
     Cook cook;
-    OpeningTime openingTime;
+    Schedules openingTime;
 
 
     @Given("restaurant {string} with an order from {string} in the preparation in progress status")
@@ -27,7 +27,7 @@ public class MyStepdefs_ValidAPreparation {
         customer = new Customer(2,customerName,"huzog");
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(restaurantName, "6 rue de l'eglise", openingTime);
         pizza = new Dish("pizza",15);
 

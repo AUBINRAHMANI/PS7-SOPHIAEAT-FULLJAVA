@@ -3,7 +3,7 @@ package fr.unice.polytech.biblio;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class OrderControllerTest {
 
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        OpeningTime openingTime = new OpeningTime(openingHour, closingHour);
+        Schedules openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant("McDonalds", "123 Main St",dishes, openingTime);
         newRestaurant = new Restaurant("Burger King", "456 Elm St", dishes, openingTime);
 

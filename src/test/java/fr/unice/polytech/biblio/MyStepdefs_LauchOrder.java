@@ -4,7 +4,7 @@ import fr.unice.polytech.biblio.Person.Cook;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -21,7 +21,7 @@ public class MyStepdefs_LauchOrder {
     OrderController orderController;
     SimpleOrder order;
     Cook cook;
-    OpeningTime openingTime;
+    Schedules openingTime;
 
     @Given("restaurant {string} with a paid order for user {string}")
     public void paidOrderofUser(String restaurantName, String userName){
@@ -30,7 +30,7 @@ public class MyStepdefs_LauchOrder {
         pizza = new Dish("pizza", 15);
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(restaurantName, "2 impasse de l'etoile", openingTime);
         restaurant.addDish(pizza);
         orderController = new OrderController();

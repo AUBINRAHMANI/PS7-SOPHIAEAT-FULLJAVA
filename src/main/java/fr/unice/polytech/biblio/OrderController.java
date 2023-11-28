@@ -40,6 +40,18 @@ public class OrderController {
     }
 
 
+    public void createGroupedOrder(int id, Customer customer, ArrayList<AbstractOrder> orders) {
+        OrderGroupBuilder builder = new OrderGroupBuilder(id, customer);
+
+        for (AbstractOrder order : orders) {
+            builder.addOrder(order);
+        }
+
+        GroupOrder groupedOrder = builder.build();
+        orders.add(groupedOrder);
+    }
+
+
 
     public void addDish(SimpleOrder order, Dish dish) {
         if (order != null) {
