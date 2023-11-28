@@ -3,8 +3,8 @@ package fr.unice.polytech.biblio;
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
-import fr.unice.polytech.biblio.Restaurant.OpeningTime;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -38,7 +38,7 @@ public class MyStepdefs_Discount {
         dishes.add(burger);
         dishes.add(pizza);
         dishes.add(iceCream);
-        OpeningTime openingTime = new OpeningTime(new HourTime(10,0), new HourTime(18,0));
+        Schedules openingTime = new Schedules(new HourTime(10,0), new HourTime(18,0));
         restaurant = new Restaurant(restaurantName, "5 rue du Coulon", dishes, openingTime);
         for(int i = 0; i < 9; i++) {
             orderController.createOrder(i, customer, restaurant, new ArrayList<>(List.of(dishes.get(i % 3))));
@@ -73,7 +73,7 @@ public class MyStepdefs_Discount {
         dishes.add(burger);
         dishes.add(pizza);
         dishes.add(iceCream);
-        OpeningTime openingTime = new OpeningTime(new HourTime(10,0), new HourTime(18,0));
+        Schedules openingTime = new Schedules(new HourTime(10,0), new HourTime(18,0));
         restaurant = new Restaurant("McDonalds", "1 impasse de la Roya", dishes, openingTime);
 
         LocalDate date = LocalDate.now();
@@ -103,7 +103,7 @@ public class MyStepdefs_Discount {
         dishes.add(burger);
         dishes.add(pizza);
         dishes.add(iceCream);
-        OpeningTime openingTime = new OpeningTime(new HourTime(10,0), new HourTime(18,0));
+        Schedules openingTime = new Schedules(new HourTime(10,0), new HourTime(18,0));
         restaurant = new Restaurant("McDonalds", "1 impasse de la Roya", dishes, openingTime);
 
         for(int i = 0; i < 9; i++) {
