@@ -131,9 +131,6 @@ public class OrderController {
            }
        }
     }
-    /*public SimpleOrder getOrder() {
-        return this.order;
-    }*/
 
     public PayementSystem getPayementSystem() {
         return this.payementSystem;
