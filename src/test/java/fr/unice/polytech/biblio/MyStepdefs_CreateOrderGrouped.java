@@ -1,5 +1,13 @@
 package fr.unice.polytech.biblio;
 
+<<<<<<< HEAD
+=======
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+>>>>>>> develop-2.0
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,7 +33,7 @@ public class MyStepdefs_CreateOrderGrouped {
 
     SimpleOrder order;
 
-    OpeningTime openingTime;
+    Schedules openingTime;
 
     HourTime opening;
 
@@ -57,7 +65,7 @@ public class MyStepdefs_CreateOrderGrouped {
 
         opening = new HourTime(18,30);
         closing = new HourTime(1,0);
-        openingTime = new OpeningTime(opening,closing);
+        openingTime = new Schedules(opening,closing);
 
         menu = new ArrayList<Dish>();
         menu.add(dishHamburger);
@@ -66,12 +74,32 @@ public class MyStepdefs_CreateOrderGrouped {
         restaurant = new Restaurant("kebabiste","13 rue des kebabs Nice",menu,openingTime);
 
         orderController = new OrderController();
+<<<<<<< HEAD
         orderGroupBuilder = new OrderGroupController();
 
         orderController.createOrder(1,customerAlice,restaurant);
         orderAlice = orderController.getOrderById(1);
         orderController.chooseRestaurant(orderAlice,restaurant);
         orderController.addDish(orderAlice,dishHamburger);
+=======
+        orderGroupBuilder = new OrderGroupBuilder(  1, customerAlice);
+
+//        orderController.chooseRestaurant(restaurant);
+//
+//        orderController.createOrder(1,customerAlice,restaurant);
+//        orderController.createOrder(2,customerAlice,restaurant); // mettre bob, modifier la classe pour que ca soit une liste d'order pour retrouver (exemple avec les id)
+//        orderController.addDish(dishHamburger);
+//        orderController.addDish(dishPizza); //non c'est deux orders
+
+
+
+
+
+
+
+
+
+>>>>>>> develop-2.0
 
 
        // orderController.createOrder(2,customerAlice,restaurant); // mettre bob, modifier la classe pour que ca soit une liste d'order pour retrouver (exemple avec les id)// orderBob = orderController.getOrderById(2);

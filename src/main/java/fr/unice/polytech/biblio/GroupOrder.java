@@ -1,5 +1,7 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Customer;
+
 import java.util.ArrayList;
 
 public class GroupOrder extends AbstractOrder {

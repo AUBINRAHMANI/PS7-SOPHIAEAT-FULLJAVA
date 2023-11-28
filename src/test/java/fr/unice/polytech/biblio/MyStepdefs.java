@@ -1,14 +1,13 @@
 package fr.unice.polytech.biblio;
 
-import fr.unice.polytech.biblio.Customer;
-import fr.unice.polytech.biblio.Dish;
-import fr.unice.polytech.biblio.OrderController;
-import fr.unice.polytech.biblio.Restaurant;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -21,11 +20,11 @@ public class MyStepdefs {
     OrderController orderController;
     SimpleOrder order;
    // ArrayList<Dish> dishes = new ArrayList<Dish>();
-    OpeningTime openingTime;
+    Schedules openingTime;
 
     @Given("a customer {string} {string}")
     public void aCustomer(String customerName, String customerSurname){
-        customer = new Customer(customerName, customerSurname);
+        customer = new Customer(2,customerName, customerSurname);
     }
 
 
@@ -33,7 +32,7 @@ public class MyStepdefs {
     public void chooseTheRestaurant(String customerName, String restaurantName) {
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(restaurantName, "98 rue de la paix", openingTime);
         dish = new Dish("pizza",15);
         restaurant.addDish(dish);

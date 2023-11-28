@@ -1,5 +1,10 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,13 +22,13 @@ public class MyStepdefs_ChooseDish {
     OrderController orderController;
     SimpleOrder order;
     ArrayList<Dish> dishes;
-    OpeningTime openingTime;
+    Schedules openingTime;
     @Given("a customer {string} who has chosen the restaurant {string}")
     public void aCustomerWhoHasChosenTheRestaurant(String customerName, String restaurantName) {
-        customer = new Customer(customerName, "Some Surname");
+        customer = new Customer(3 ,customerName, "Some Surname");
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(restaurantName, "7 avenue verte", openingTime);
         //order = new Order(1, customer, restaurant, dishes);
         orderController = new OrderController();

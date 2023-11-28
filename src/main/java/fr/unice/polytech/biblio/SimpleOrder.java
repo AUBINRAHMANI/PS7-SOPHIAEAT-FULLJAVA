@@ -1,5 +1,10 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+
 import java.util.ArrayList;
 
 public class SimpleOrder extends AbstractOrder{
@@ -15,13 +20,14 @@ public class SimpleOrder extends AbstractOrder{
         super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = priceOrder;
-
+        this.dishes = new ArrayList<>();
     }
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant){
         super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = 0;
+        this.dishes = new ArrayList<>();
     }
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant,ArrayList<Dish> dishes){
@@ -82,6 +88,5 @@ public class SimpleOrder extends AbstractOrder{
         return getPriceOrder() == prix;
 
     }
-
 
 }

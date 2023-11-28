@@ -1,5 +1,7 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Customer;
+
 import java.util.ArrayList;
 
 public class OrderGroupController {
@@ -23,6 +25,16 @@ public class OrderGroupController {
     public void addOrder(AbstractOrder order){
         this.orders.add(order);
 
+    }
+
+    public void createGroupedOrder(int id, Customer customer, ArrayList<AbstractOrder> orders) {
+        OrderGroupBuilder builder = new OrderGroupBuilder(id, customer);
+        for (AbstractOrder order : orders) {
+            builder.addOrder(order);
+        }
+
+        GroupOrder groupedOrder = builder.build();
+        orders.add(groupedOrder);
     }
 
 }

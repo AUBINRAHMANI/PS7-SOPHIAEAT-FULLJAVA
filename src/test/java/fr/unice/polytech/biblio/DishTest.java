@@ -1,9 +1,11 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Restaurant.Dish;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 class DishTest {
     private Dish dish;
@@ -23,7 +25,7 @@ class DishTest {
 
     @Test
     void getPrice() {
-        assertEquals(10.0f, dish.getPrice());
+        assertEquals(10.0f, dish.getPrice(), 0.001);
     }
 
     @Test

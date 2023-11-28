@@ -1,35 +1,37 @@
 package fr.unice.polytech.biblio;
 
-import io.cucumber.java.bs.A;
+import fr.unice.polytech.biblio.Payement.PayementState;
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import java.security.interfaces.DSAKey;
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
 public class MyStepdefs_payOrder {
 
-    Order order;
+    SimpleOrder order;
     OrderController orderController;
     Customer customer;
     Dish dish ;
     Restaurant restaurant;
     Dish pizza;
     //ArrayList<Dish> dishes;
-    OpeningTime openingTime;
+    Schedules openingTime;
 
 
     @Given("a customer {string} who has an order with one dish {string} in the restaurant {string}")
     public void customerWhoHasOrdered(String customerName, String dishName, String nameRestaurant){
-        customer = new Customer(customerName,"huzog");
+        customer = new Customer(5,customerName,"huzog");
         dish = new Dish(dishName,20);
         pizza = new Dish("pizza",30);
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(nameRestaurant, "17 boulevard de l'aiguille", openingTime);
         restaurant.addDish(dish);
         restaurant.addDish(pizza);
@@ -55,7 +57,7 @@ public class MyStepdefs_payOrder {
     public void orderValidated(){
         PayementSystem payementSystem = order.getPayementSystem();
         assertEquals(order.getOrderState(),OrderState.PAID);
-        assertEquals(payementSystem.getPayementState(),PayementState.VALID);
+        assertEquals(payementSystem.getPayementState(), PayementState.VALID);
         assertTrue( orderController.notify(order, restaurant));
         assertEquals(order.getOrderState(),OrderState.READY_TO_COOK);
     }

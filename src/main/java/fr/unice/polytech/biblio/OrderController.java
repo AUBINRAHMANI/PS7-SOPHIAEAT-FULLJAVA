@@ -1,13 +1,17 @@
 package fr.unice.polytech.biblio;
 
-import org.mockito.internal.matchers.Or;
+import fr.unice.polytech.biblio.Payement.PayementState;
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderController {
-    private SimpleOrder order;
+    //private SimpleOrder order;
 
     private ArrayList<SimpleOrder> orders;
 
@@ -29,7 +33,7 @@ public class OrderController {
         SimpleOrder order = new SimpleOrder(id, customer, restaurant, dishes);
         PayementSystem payementSystem = new PayementSystem(id);
         order.setPayementSystem(payementSystem);
-        orders.add(this.order);
+        orders.add(order);
 
     }
 
@@ -39,10 +43,8 @@ public class OrderController {
         order.setPayementSystem(payementSystem);
         orders.add(order);
     }
+    public void addDish(SimpleOrder order, Dish dish) {
 
-
-
-    public void addDish(SimpleOrder order,Dish dish) {
         if (order != null) {
             order.addDish(dish);
         } else {
@@ -117,9 +119,9 @@ public class OrderController {
            }
        }
     }
-    public SimpleOrder getOrder() {
+    /*public SimpleOrder getOrder() {
         return this.order;
-    }
+    }*/
 
     public PayementSystem getPayementSystem() {
         return this.payementSystem;

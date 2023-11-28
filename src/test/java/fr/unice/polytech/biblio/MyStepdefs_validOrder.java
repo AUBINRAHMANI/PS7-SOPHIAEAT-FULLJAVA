@@ -1,12 +1,15 @@
 package fr.unice.polytech.biblio;
 
-import io.cucumber.java.bs.A;
+import fr.unice.polytech.biblio.Payement.PayementState;
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.HourTime;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import javax.management.openmbean.OpenMBeanInfo;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -17,23 +20,23 @@ public class MyStepdefs_validOrder {
 
     Restaurant restaurant;
 
-    Order order;
+    SimpleOrder order;
 
     Dish dish;
 
   //  ArrayList<Dish> dishes = new ArrayList<>();
 
     OrderController orderController;
-    OpeningTime openingTime;
+    Schedules openingTime;
     //PayementSystem payementSystem;
 
 
     @Given("a customer {string} {string} who has already chosen the restaurant {string} and with a filled order")
     public void aCustomerWhohasAlreadyChosenTheRestaurant(String customerName,String customerSurname, String restaurantName) {
-        customer = new Customer(customerName, customerSurname);
+        customer = new Customer(4,customerName, customerSurname);
         HourTime openingHour = new HourTime(10,0);
         HourTime closingHour = new HourTime(22,0);
-        openingTime = new OpeningTime(openingHour, closingHour);
+        openingTime = new Schedules(openingHour, closingHour);
         restaurant = new Restaurant(restaurantName, "45 boulevard massena", openingTime);
         //order = new Order(1, customer, restaurant, dishes);
         //payementSystem = new PayementSystem(1);

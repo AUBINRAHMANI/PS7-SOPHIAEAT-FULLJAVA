@@ -1,7 +1,8 @@
 package fr.unice.polytech.biblio;
 
-import fr.unice.polytech.biblio.Restaurant.RestaurantBuilder;
-
+import fr.unice.polytech.biblio.Restaurant.Restaurant.RestaurantBuilder;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+import fr.unice.polytech.biblio.Person.Customer;
 public class SimpleOrderBuilder extends OrderBuilder{
 
     OrderController orderController;

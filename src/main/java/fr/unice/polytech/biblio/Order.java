@@ -1,8 +1,13 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+
 import java.util.ArrayList;
 
-public class Order {
+public class Order {    //To delete car devenue obsolète
     private int id;
     private Customer customer;
     private Restaurant restaurant;

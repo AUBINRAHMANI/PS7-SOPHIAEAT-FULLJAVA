@@ -1,5 +1,8 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Restaurant;
 
+
+import fr.unice.polytech.biblio.OrderState;
+import fr.unice.polytech.biblio.SimpleOrder;
 
 import java.util.ArrayList;
 
@@ -8,36 +11,36 @@ public class Restaurant {
     private String name;
     private String address;
     private ArrayList<Dish> dishes;
-    private OpeningTime openingTime;
+    private Schedules schedules;
 
-    public OpeningTime getOpeningTime() {
-        return openingTime;
+    public Schedules getSchedules() {
+        return schedules;
     }
 
-    public void setOpeningTime(OpeningTime openingTime) {
-        this.openingTime = openingTime;
+    public void setSchedules(Schedules schedules) {
+        this.schedules = schedules;
     }
 
-    public Restaurant(String name, String address, ArrayList<Dish> dishes, OpeningTime openingTime) {
+    public Restaurant(String name, String address, ArrayList<Dish> dishes, Schedules schedules) {
         this.name = name;
         this.address = address;
         this.dishes = dishes;
-        this.openingTime = openingTime;
+        this.schedules = schedules;
     }
-
 
     private Restaurant(RestaurantBuilder restaurantBuilder) {
         this.name = restaurantBuilder.name;
         this.address = restaurantBuilder.address;
         this.dishes = restaurantBuilder.dishes;
-        this.openingTime  = restaurantBuilder.openingTime;
+        this.schedules  = restaurantBuilder.schedules;
 
     }
 
-    public Restaurant(String name, String address, OpeningTime openingTime) {
+
+    public Restaurant(String name, String address, Schedules schedules) {
         this.name = name;
         this.address = address;
-        this.openingTime = openingTime;
+        this.schedules = schedules;
         this.dishes = new ArrayList<>();
     }
 
@@ -58,6 +61,16 @@ public class Restaurant {
         dishes.add(dish);
     }
 
+    public boolean removeDish(Dish dish) {
+        for(Dish searchDish : dishes) {
+            if(searchDish.name.equals(dish.name)) {
+                dishes.remove(searchDish);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public String toString() {
         return "Restaurant [name=" + name + ", address=" + address + ", dishes=" + dishes + "]";
@@ -73,7 +86,7 @@ public class Restaurant {
     }
 
     public boolean isTimeValid(HourTime hourTime) {
-        return hourTime.compareTo(openingTime.getOpeningHour()) >= 0 && hourTime.compareTo(openingTime.getClosingHour()) <= 0;
+        return hourTime.compareTo(schedules.getOpeningHour()) >= 0 && hourTime.compareTo(schedules.getClosingHour()) <= 0;
     }
 
     //a modifier
@@ -86,7 +99,7 @@ public class Restaurant {
         private final String name;
         private final String address;
         private ArrayList<Dish> dishes;
-        private OpeningTime openingTime;
+        private Schedules schedules;
 
         public RestaurantBuilder(String name, String adress) {
             this.name = name;
@@ -98,8 +111,8 @@ public class Restaurant {
             return this;
         }
 
-        public RestaurantBuilder openingTime(OpeningTime openingTime) {
-            this.openingTime = openingTime;
+        public RestaurantBuilder openingTime(Schedules schedules) {
+            this.schedules = schedules;
             return this;
         }
 
