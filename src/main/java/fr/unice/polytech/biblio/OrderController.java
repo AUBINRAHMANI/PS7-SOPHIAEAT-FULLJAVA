@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderController {
-    private SimpleOrder order;
+    //private SimpleOrder order;
 
     private ArrayList<SimpleOrder> orders;
 
@@ -28,7 +28,7 @@ public class OrderController {
         SimpleOrder order = new SimpleOrder(id, customer, restaurant, dishes);
         PayementSystem payementSystem = new PayementSystem(id);
         order.setPayementSystem(payementSystem);
-        orders.add(this.order);
+        orders.add(order);
 
     }
 
@@ -116,9 +116,9 @@ public class OrderController {
            }
        }
     }
-    public SimpleOrder getOrder() {
+    /*public SimpleOrder getOrder() {
         return this.order;
-    }
+    }*/
 
     public PayementSystem getPayementSystem() {
         return this.payementSystem;
