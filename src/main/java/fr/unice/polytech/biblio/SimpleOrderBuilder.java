@@ -4,15 +4,25 @@ import fr.unice.polytech.biblio.Restaurant.RestaurantBuilder;
 
 public class SimpleOrderBuilder extends OrderBuilder{
 
+    OrderController orderController;
+
+    int id = 0;
     public SimpleOrderBuilder(){
         super();
+        OrderController orderController = new OrderController();
     }
+
+    public void createOrder(Customer customer, Restaurant restaurant){
+        orderController.createOrder(this.id,customer,restaurant);
+        id++;
+    }
+
     public void createOrder(SimpleOrder order) {
         OrderController orderController = new OrderController(order);
     }
 
-    public void addRestaurant(String name, String adress){
-        RestaurantBuilder restaurantBuilder = new RestaurantBuilder(name,adress);
+    public void createRestaurant(String name, String adress){
+        Restaurant restaurant = new Restaurant.RestaurantBuilder(name,adress).build();
     }
 
 

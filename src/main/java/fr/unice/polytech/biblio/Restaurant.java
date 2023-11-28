@@ -103,6 +103,10 @@ public class Restaurant {
             return this;
         }
 
+        public Restaurant build(){
+            return new Restaurant(this);
+        }
+
 
     }
 

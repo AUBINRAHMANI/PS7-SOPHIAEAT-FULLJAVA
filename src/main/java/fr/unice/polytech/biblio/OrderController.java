@@ -22,7 +22,6 @@ public class OrderController {
     public OrderController(SimpleOrder order){
         this.orders = new ArrayList<SimpleOrder>();
         this.orders.add(order);
-
     }
 
     public void createOrder(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
@@ -143,7 +142,6 @@ public class OrderController {
         if(order.getPayementSystem().isValid()) {
             order.setOrderState(OrderState.PAID);
             //restaurant.orderGetReady(this.getOrder());
-
         }
 
         //this.notify(order.getRestaurant());
