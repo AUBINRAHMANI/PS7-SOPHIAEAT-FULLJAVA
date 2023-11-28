@@ -18,16 +18,6 @@ public class OrderGroupBuilder {
         this.orders = new ArrayList<>();
     }
 
-//    public OrderGroupBuilder(){
-//        this.order=null;
-//    }
-
-
-//    public void addOrder(AbstractOrder order){
-//        this.order=order;
-//
-//    }
-
     public OrderGroupBuilder addOrder(AbstractOrder order) {
         this.orders.add(order);
         return this;
