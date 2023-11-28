@@ -19,6 +19,12 @@ public class OrderController {
 
     }
 
+    public OrderController(SimpleOrder order){
+        this.orders = new ArrayList<SimpleOrder>();
+        this.orders.add(order);
+
+    }
+
     public void createOrder(int id, Customer customer, Restaurant restaurant, ArrayList<Dish> dishes) {
 
         SimpleOrder order = new SimpleOrder(id, customer, restaurant, dishes);
@@ -37,7 +43,7 @@ public class OrderController {
 
 
 
-    public void addDish(Order order,Dish dish) {
+    public void addDish(SimpleOrder order,Dish dish) {
         if (order != null) {
             order.addDish(dish);
         } else {
@@ -45,7 +51,7 @@ public class OrderController {
         }
     }
 
-    public void chooseRestaurant(Order order, Restaurant restaurant) {
+    public void chooseRestaurant(SimpleOrder order, Restaurant restaurant) {
         if (order != null) {
             order.setRestaurant(restaurant);
         } else {
@@ -90,7 +96,7 @@ public class OrderController {
         else System.out.println("Please Validate your Order before");
     }
 */
-    public void validateOrder(Order order, HourTime currentTime){
+    public void validateOrder(SimpleOrder order, HourTime currentTime){
        if(order.getDishes()==null) {
            System.out.println("The order is empty please");
        }
@@ -125,7 +131,7 @@ public class OrderController {
 
     }
 
-    public void pay(Order order, int prix){
+    public void pay(SimpleOrder order, int prix){
         Restaurant restaurant = order.getRestaurant();
         if(order.getPayementSystem().getPayementState().equals(PayementState.UNLOCK)){
            if(order.pay(prix))
@@ -144,11 +150,11 @@ public class OrderController {
 
     }
 
-    public void validatePayement(Order order){
+    public void validatePayement(SimpleOrder order){
         order.getPayementSystem().setPayementState(PayementState.VALID);
     }
 
-    public void cancelOrder(Order order) {
+    public void cancelOrder(SimpleOrder order) {
         order.setOrderState(OrderState.CANCELLED);
         order.getPayementSystem().setPayementState(PayementState.LOCK);
     }

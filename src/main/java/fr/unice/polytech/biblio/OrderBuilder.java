@@ -4,6 +4,9 @@ import java.util.List;
 
 public abstract class OrderBuilder {
 
+   public OrderBuilder() {
+   }
+
    public void createOrder(AbstractOrder order) {
       if (order instanceof SimpleOrder) {
          OrderController orderController = new OrderController((SimpleOrder) order);
@@ -19,4 +22,4 @@ public abstract class OrderBuilder {
 
 
 
-}
+

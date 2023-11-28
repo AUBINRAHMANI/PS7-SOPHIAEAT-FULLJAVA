@@ -19,7 +19,7 @@ public class MyStepdefs {
     Customer customer;
     Dish dish;
     OrderController orderController;
-    Order order;
+    SimpleOrder order;
    // ArrayList<Dish> dishes = new ArrayList<Dish>();
     OpeningTime openingTime;
 

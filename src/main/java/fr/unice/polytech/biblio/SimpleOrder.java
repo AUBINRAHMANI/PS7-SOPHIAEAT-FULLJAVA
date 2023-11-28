@@ -78,5 +78,10 @@ public class SimpleOrder extends AbstractOrder{
         return this.payementSystem;
     }
 
+    public boolean pay(int prix){
+        return getPriceOrder() == prix;
+
+    }
+
 
 }

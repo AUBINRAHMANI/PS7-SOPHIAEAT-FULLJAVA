@@ -2,16 +2,21 @@ package fr.unice.polytech.biblio;
 
 import java.util.ArrayList;
 
-public class OrderGroupBuilder implements  {
+public class OrderGroupController {
 
    public AbstractOrder order;
 
    public ArrayList<AbstractOrder> orders;
 
 
-    public OrderGroupBuilder(){
+    public OrderGroupController(){
         this.orders = new ArrayList<AbstractOrder>();
         this.order=null;
+    }
+
+    public OrderGroupController(GroupOrder order){
+        this.orders = new ArrayList<>();
+        this.orders.add(order);
     }
 
 
@@ -19,4 +24,5 @@ public class OrderGroupBuilder implements  {
         this.orders.add(order);
 
     }
+
 }

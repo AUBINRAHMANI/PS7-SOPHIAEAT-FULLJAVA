@@ -1,7 +1,5 @@
 package fr.unice.polytech.biblio;
 
-import fr.unice.polytech.biblio.*;
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -23,7 +21,7 @@ public class MyStepdefs_CreateOrderGrouped {
 
     OrderController orderController;
 
-    OrderGroupBuilder orderGroupBuilder;
+    OrderGroupController orderGroupBuilder;
 
     SimpleOrder order;
 
@@ -37,10 +35,9 @@ public class MyStepdefs_CreateOrderGrouped {
 
     ArrayList<Dish> orderlist;
 
+    SimpleOrder orderAlice;
 
-
-
-
+    SimpleOrder orderBob;
 
 
 
@@ -52,7 +49,7 @@ public class MyStepdefs_CreateOrderGrouped {
 
     }
 
-    @When("{string} create an order grouped with that dishes {string} and {string}")
+    @When("{string} create an order simple with that dishes: {string}")
     public void createAnOrderGroupedWithThatDishesAnd(String customerName, String hamburger, String pizza) {
 
         dishHamburger = new Dish(hamburger,15);
@@ -69,35 +66,30 @@ public class MyStepdefs_CreateOrderGrouped {
         restaurant = new Restaurant("kebabiste","13 rue des kebabs Nice",menu,openingTime);
 
         orderController = new OrderController();
-        orderGroupBuilder = new OrderGroupBuilder();
-
-        orderController.chooseRestaurant(restaurant);
+        orderGroupBuilder = new OrderGroupController();
 
         orderController.createOrder(1,customerAlice,restaurant);
-        orderController.createOrder(2,customerAlice,restaurant); // mettre bob, modifier la classe pour que ca soit une liste d'order pour retrouver (exemple avec les id)
-        orderController.addDish(dishHamburger);
-        orderController.addDish(dishPizza); //non c'est deux orders
+        orderAlice = orderController.getOrderById(1);
+        orderController.chooseRestaurant(orderAlice,restaurant);
+        orderController.addDish(orderAlice,dishHamburger);
 
 
-
-
-
-
-
-
-
-
-
+       // orderController.createOrder(2,customerAlice,restaurant); // mettre bob, modifier la classe pour que ca soit une liste d'order pour retrouver (exemple avec les id)// orderBob = orderController.getOrderById(2);
+      //orderController.addDish(orderBob,dishPizza);
 
     }
 
+    @And("{string} create another order simple for user {string} with that dishes : {string}")
+    public void createAnotherOrderSimpleForUserWithThatDishes(String customerAlice, String customerBob, String pizza) {
 
-    @And("Alice invite other users {string} and {string}")
-    public void aliceInviteOtherUsersAnd(String arg0, String arg1) {
+        orderGroupBuilder = new OrderGroupController();
+        orderGroupBuilder.addOrder(orderAlice);
+        orderGroupBuilder.addOrder(orderBob);
     }
-
 
     @Then("the order grouped is created")
     public void theOrderGroupedIsCreated() {
     }
+
+
 }

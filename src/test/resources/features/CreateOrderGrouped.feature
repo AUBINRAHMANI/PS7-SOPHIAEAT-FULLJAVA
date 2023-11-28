@@ -3,6 +3,6 @@ Feature:
 
   Scenario: Create Order Grouped
     Given a connected user "Alice"
-    When "Alice" create an order grouped with that dishes "hamburger" and "pizza"
-    And Alice invite other users "Bob" and "Claire"
+    When "Alice" create an order simple with that dishes: "Hamburger"
+    And "Alice" create another order simple for user "bob" with that dishes : "Pizza"
     Then the order grouped is created
