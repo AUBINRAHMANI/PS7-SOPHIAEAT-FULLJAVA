@@ -12,6 +12,5 @@ public class OrderGroupBuilder {
 
     public void addOrder(AbstractOrder order){
         this.order=order;
-
     }
 }

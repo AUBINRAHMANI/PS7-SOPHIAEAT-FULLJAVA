@@ -5,22 +5,27 @@ import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class SimpleOrder extends AbstractOrder{
     private Restaurant restaurant;
 
-    private float priceOrder;
+    private double priceOrder;
 
     private ArrayList<Dish> dishes;
 
     private PayementSystem payementSystem;
+
+    private boolean usedForDiscount;
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant, int priceOrder){
         super(id,customer);
         this.restaurant = restaurant;
         this.priceOrder = priceOrder;
         this.dishes = new ArrayList<>();
+        this.usedForDiscount = false;
     }
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant){
@@ -28,6 +33,7 @@ public class SimpleOrder extends AbstractOrder{
         this.restaurant = restaurant;
         this.priceOrder = 0;
         this.dishes = new ArrayList<>();
+        this.usedForDiscount = false;
     }
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant,ArrayList<Dish> dishes){
@@ -35,6 +41,7 @@ public class SimpleOrder extends AbstractOrder{
         this.restaurant = restaurant;
         this.priceOrder = 0;
         this.dishes=dishes;
+        this.usedForDiscount = false;
     }
 
     @Override
@@ -67,7 +74,7 @@ public class SimpleOrder extends AbstractOrder{
         return this.dishes;
     }
 
-    public float getPriceOrder(){
+    public double getPriceOrder(){
         return this.priceOrder;
     }
 
@@ -84,9 +91,16 @@ public class SimpleOrder extends AbstractOrder{
         return this.payementSystem;
     }
 
-    public boolean pay(int prix){
+    public boolean pay(double prix){
         return getPriceOrder() == prix;
 
     }
 
+    public boolean isUsedForDiscount() {
+        return usedForDiscount;
+    }
+
+    public void setUsedForDiscount(boolean usedForDiscount) {
+        this.usedForDiscount = usedForDiscount;
+    }
 }
