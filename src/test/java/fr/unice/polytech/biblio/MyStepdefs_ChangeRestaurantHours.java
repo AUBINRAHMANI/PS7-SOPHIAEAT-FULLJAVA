@@ -23,7 +23,7 @@ public class MyStepdefs_ChangeRestaurantHours {
     @When("the manager decides to change the hours to {int}:{int} - {int}:{int}")
     public void decidesToChangeTheHoursTo(int openingHour, int openingMinute, int closingHour, int closingMinute) {
         OpeningTime newOpeningTime = new OpeningTime(new HourTime(openingHour,openingMinute), new HourTime(closingHour,closingMinute));
-        restaurantManager.setOpeningTime(restaurant, newOpeningTime);
+        restaurantManager.setOpeningTime(newOpeningTime);
     }
 
     @Then("the restaurant hours are changed")

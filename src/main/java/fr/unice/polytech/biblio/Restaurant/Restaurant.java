@@ -52,6 +52,16 @@ public class Restaurant {
         dishes.add(dish);
     }
 
+    public boolean removeDish(Dish dish) {
+        for(Dish searchDish : dishes) {
+            if(searchDish.name.equals(dish.name)) {
+                dishes.remove(searchDish);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public String toString() {
         return "Restaurant [name=" + name + ", address=" + address + ", dishes=" + dishes + "]";
