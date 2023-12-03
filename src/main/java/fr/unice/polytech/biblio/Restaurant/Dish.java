@@ -35,7 +35,7 @@ public class Dish {
     @Override
     public boolean equals(Object obj) {
         Dish dish = (Dish)obj;
-        System.out.println(this.price + " _ " + dish.getPrice() + " _ " + (this.price - dish.getPrice()));
+        //System.out.println(this.price + " _ " + dish.getPrice() + " _ " + (this.price - dish.getPrice()));
         return this.name == dish.getName() && (int)((this.price - dish.getPrice())*10) == 0;
     }
 }
