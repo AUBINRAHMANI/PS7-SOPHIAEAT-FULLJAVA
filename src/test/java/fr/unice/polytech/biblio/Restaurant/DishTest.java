@@ -46,6 +46,7 @@ class DishTest {
 
         assertTrue(dish.equals(sameDish));
         assertFalse(dish.equals(differentDish));
+        assertFalse(dish.equals(null));
     }
 
     @Test
@@ -55,6 +56,12 @@ class DishTest {
 
 
         assertNotEquals(dish.hashCode(), differentDish.hashCode());
+    }
+
+    @Test
+    void testEqualsDifferentClass() {
+        Object differentObject = new Object();
+        assertFalse(dish.equals(differentObject));
     }
 
 
