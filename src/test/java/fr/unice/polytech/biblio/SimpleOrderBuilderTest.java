@@ -1,26 +1,35 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Restaurant.Dish;
+import fr.unice.polytech.biblio.Restaurant.Restaurant;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleOrderBuilderTest {
 
-    SimpleOrderBuilder simpleOrderBuilder;
+    private SimpleOrderBuilder simpleOrderBuilder;
+    private Customer customer;
+    private Restaurant restaurant;
 
-    Customer customer;
-
-    Dish dishPizza;
-
-    Dish dishHamburger;
-
-    @Test
-    void createOrder() {
+    @BeforeEach
+    public void setUp() {
         simpleOrderBuilder = new SimpleOrderBuilder();
-
+        customer = new Customer(1, "Doe", "john@example.com");
+        restaurant = new Restaurant.RestaurantBuilder("RestaurantName", "RestaurantAddress").build();
     }
 
     @Test
-    void addRestaurant() {
+    public void testCreateOrder() {
     }
+
+    @Test
+    public void testCreateRestaurant() {
+        simpleOrderBuilder.createRestaurant("AnotherRestaurant", "AnotherAddress");
+
+    }
+
+
 }

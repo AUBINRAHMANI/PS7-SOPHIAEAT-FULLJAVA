@@ -27,4 +27,7 @@ public class OrderGroupBuilder {
         return new GroupOrder(orderId, customer, orders);
     }
 
+    public Object getOrderGrouped() {
+        return this.order;
+    }
 }

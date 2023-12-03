@@ -37,4 +37,7 @@ public class OrderGroupController {
         orders.add(groupedOrder);
     }
 
+    public Object getOrderGrouped() {
+        return this.order;
+    }
 }
