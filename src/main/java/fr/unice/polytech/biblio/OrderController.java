@@ -7,6 +7,7 @@ import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
+import java.security.interfaces.DSAKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,17 @@ public class OrderController {
 
         if (order != null) {
             order.addDish(dish);
+        } else {
+            System.out.println("No order created yet. Please create an order first.");
+        }
+    }
+
+    public void addDishes(SimpleOrder order, ArrayList<Dish> dishes) {
+        if (order != null) {
+            for(Dish dish : dishes){
+                order.addDish(dish);
+            }
+
         } else {
             System.out.println("No order created yet. Please create an order first.");
         }
@@ -143,6 +155,7 @@ public class OrderController {
         System.out.println(order.getPayementSystem().getPayementState());
         if(order.getPayementSystem().isValid()) {
             order.setOrderState(OrderState.PAID);
+            System.out.println("Votre commande à bien été payé");
             //restaurant.orderGetReady(this.getOrder());
         }
 
