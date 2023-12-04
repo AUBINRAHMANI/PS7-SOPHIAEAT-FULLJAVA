@@ -1,5 +1,6 @@
 package fr.unice.polytech.biblio.Restaurant;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class RestaurantFactory {
@@ -7,12 +8,12 @@ public class RestaurantFactory {
     Restaurants restaurants;
     private Map<String, Restaurant> restaurantBuilders;
 
-    public RestaurantFactory RestaurantsFactory(){
+    public RestaurantFactory(){
         restaurants = new Restaurants();
+        restaurantBuilders = new HashMap<>();
         restaurantBuilders.put(restaurants.kebabDelice().getName(),restaurants.kebabDelice());
         restaurantBuilders.put(restaurants.leChinoisDeNice().getName(),restaurants.leChinoisDeNice());
-        restaurantBuilders.put(restaurants.saladParties().getAddress(),restaurants.saladParties());
-        return null;
+        restaurantBuilders.put(restaurants.saladParties().getName(),restaurants.saladParties());
     }
 
     public Restaurant createRestaurant(String nameRestaurant){

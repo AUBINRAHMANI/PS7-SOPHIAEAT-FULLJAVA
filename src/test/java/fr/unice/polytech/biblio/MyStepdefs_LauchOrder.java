@@ -35,7 +35,6 @@ public class MyStepdefs_LauchOrder {
         restaurant.addDish(pizza);
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
-        orderController.chooseRestaurant(order, restaurant);
         order = orderController.getOrderById(1);
 
         orderController.addDish(order, pizza);

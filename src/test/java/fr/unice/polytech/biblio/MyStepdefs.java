@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 public class MyStepdefs {
 
-
+    SimpleOrderBuilder simpleOrderBuilder;
     Restaurant restaurant;
     Customer customer;
     Dish dish;
@@ -30,24 +30,21 @@ public class MyStepdefs {
 
     @When("{string} choose the restaurant {string}")
     public void chooseTheRestaurant(String customerName, String restaurantName) {
-        HourTime openingHour = new HourTime(10,0);
-        HourTime closingHour = new HourTime(22,0);
-        openingTime = new Schedules(openingHour, closingHour);
-        restaurant = new Restaurant(restaurantName, "98 rue de la paix", openingTime);
-        dish = new Dish("pizza",15);
-        restaurant.addDish(dish);
-        //order = new Order(1, customer, restaurant, dishes);
-        orderController = new OrderController();
-        orderController.createOrder(1, customer, restaurant);
-        order = orderController.getOrderById(1);
-        orderController.chooseRestaurant(order, restaurant);
+        simpleOrderBuilder = new SimpleOrderBuilder();
+        restaurant = simpleOrderBuilder.createRestaurant(restaurantName);
+        simpleOrderBuilder.createOrder(customer,restaurant);
+
+        order = simpleOrderBuilder.orderController.getOrderById(customer.getId());
     }
 
     @Then("he will be able to add dishes from the restaurant {string}")
     public void heWillBeAbleToAddDishesFromTheRestaurant(String restaurantName) {
         assertNotNull(order);
-        dish = restaurant.getDishByName("pizza");
-        orderController.addDish(order, dish);
+        dish = restaurant.getDishByName("maki");
+        simpleOrderBuilder.addDish(customer,dish);
+
+        Dish dishPizza = new Dish("pizza",10);
+        assertFalse(simpleOrderBuilder.addDish(customer,dishPizza));
 //
 //
         //assertTrue(Boolean.parseBoolean(orderController.getCurrentOrder().toString()));

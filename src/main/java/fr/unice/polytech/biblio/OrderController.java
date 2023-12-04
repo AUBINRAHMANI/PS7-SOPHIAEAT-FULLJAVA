@@ -64,14 +64,6 @@ public class OrderController {
         }
     }
 
-    public void chooseRestaurant(SimpleOrder order, Restaurant restaurant) {
-        if (order != null) {
-            order.setRestaurant(restaurant);
-        } else {
-            System.out.println("No order created yet. Please create an order first.");
-        }
-    }
-
     public SimpleOrder getOrderById(int id) {
         for(SimpleOrder order : orders) {
             if(order.getId() == id) {
@@ -170,6 +162,10 @@ public class OrderController {
     public void cancelOrder(SimpleOrder order) {
         order.setOrderState(OrderState.CANCELLED);
         order.getPayementSystem().setPayementState(PayementState.LOCK);
+    }
+
+    public Restaurant getRestaurant(SimpleOrder order){
+        return order.getRestaurant();
     }
 
 }

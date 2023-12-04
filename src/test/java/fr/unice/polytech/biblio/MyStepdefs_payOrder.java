@@ -39,7 +39,6 @@ public class MyStepdefs_payOrder {
 
         orderController = new OrderController();
         orderController.createOrder(1,customer,restaurant);
-        orderController.chooseRestaurant(order, restaurant);
         order = orderController.getOrderById(1);
         orderController.addDish(order, dish);
     }

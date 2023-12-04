@@ -18,6 +18,8 @@ import static org.junit.Assert.assertTrue;
 public class MyStepdefs_validOrder {
     Customer customer;
 
+    SimpleOrderBuilder orderBuilder;
+
     Restaurant restaurant;
 
     SimpleOrder order;
@@ -26,33 +28,26 @@ public class MyStepdefs_validOrder {
 
   //  ArrayList<Dish> dishes = new ArrayList<>();
 
-    OrderController orderController;
+    //OrderController orderController;
     Schedules openingTime;
     //PayementSystem payementSystem;
 
 
     @Given("a customer {string} {string} who has already chosen the restaurant {string} and with a filled order")
     public void aCustomerWhohasAlreadyChosenTheRestaurant(String customerName,String customerSurname, String restaurantName) {
-        customer = new Customer(4,customerName, customerSurname);
-        HourTime openingHour = new HourTime(10,0);
-        HourTime closingHour = new HourTime(22,0);
-        openingTime = new Schedules(openingHour, closingHour);
-        restaurant = new Restaurant(restaurantName, "45 boulevard massena", openingTime);
-        //order = new Order(1, customer, restaurant, dishes);
-        //payementSystem = new PayementSystem(1);
-        orderController = new OrderController();
-        orderController.createOrder(1,customer,restaurant);
-        order=orderController.getOrderById(1);
-        orderController.chooseRestaurant(order, restaurant);
+        customer = new Customer(4, customerName, customerSurname);
+        orderBuilder = new SimpleOrderBuilder();
+        restaurant = orderBuilder.createRestaurant("KebabDelice");
+        orderBuilder.createOrder(customer, restaurant);
+        order = orderBuilder.orderController.getOrderById(customer.getId()); // present uniquement pour les tests
     }
 
     @When("{string} decides to validate order")
     public void aCustomerValidateOrder(String customerName) {
-        dish = new Dish("hamburger", 10);
-        orderController.addDish(order, dish);
+        orderBuilder.addDish(customer,"kebab");
        // System.out.println(order.getPriceOrder());
         HourTime currentTime = new HourTime(17,15);
-        orderController.validateOrder(order, currentTime);
+        orderBuilder.validOrder(customer,currentTime);
        // System.out.println("1");
        // System.out.println(this.payementSystem.getPayementState());
 
@@ -62,10 +57,12 @@ public class MyStepdefs_validOrder {
     public void orderIsConfirmedAndWeCanPayTheOrder(String customerName){
         PayementSystem payementSystem = order.getPayementSystem();
 
+        // On test si l'order est bien validates
         assertEquals(order.getOrderState(),OrderState.VALIDATED);
         assertEquals(PayementState.UNLOCK, payementSystem.getPayementState());
 
-        orderController.pay(order,10);
+        orderBuilder.payOrder(customer,10);
+
         System.out.println(1);
         assertEquals(OrderState.PAID,order.getOrderState());
         }

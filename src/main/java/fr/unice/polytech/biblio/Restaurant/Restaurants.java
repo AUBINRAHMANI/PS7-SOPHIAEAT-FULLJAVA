@@ -31,8 +31,7 @@ public class Restaurants {
 
     private Dish soju = new Dish("soju",10);
 
-    Restaurants restaurants(){
-        return null;
+    public Restaurants(){
     }
 
    public Restaurant kebabDelice(){

@@ -8,12 +8,13 @@ public class OrderGroupController {
 
    public AbstractOrder order;
 
+   private GroupOrder groupOrder;
+
    public ArrayList<AbstractOrder> orders;
 
 
     public OrderGroupController(){
         this.orders = new ArrayList<AbstractOrder>();
-        this.order=null;
     }
 
     public OrderGroupController(GroupOrder order){
@@ -27,6 +28,16 @@ public class OrderGroupController {
 
     }
 
+    public void createGroupedOrder(int id, Customer customer, AbstractOrder order) {
+        groupOrder = new GroupOrder(id,customer,order);
+        groupOrder.addOrder(order);
+    }
+
+    public ArrayList<AbstractOrder> getOrders(){
+        return this.orders;
+    }
+
+    /*
     public void createGroupedOrder(int id, Customer customer, ArrayList<AbstractOrder> orders) {
         OrderGroupBuilder builder = new OrderGroupBuilder(id, customer);
         for (AbstractOrder order : orders) {
@@ -36,5 +47,6 @@ public class OrderGroupController {
         GroupOrder groupedOrder = builder.build();
         orders.add(groupedOrder);
     }
+    */
 
 }

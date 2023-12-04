@@ -36,7 +36,6 @@ public class MyStepdefs_ValidAPreparation {
 
         orderController.createOrder(1,customer,restaurant);
         order = orderController.getOrderById(1);
-        orderController.chooseRestaurant(order, restaurant);
         orderController.addDish(order, pizza);
 
 

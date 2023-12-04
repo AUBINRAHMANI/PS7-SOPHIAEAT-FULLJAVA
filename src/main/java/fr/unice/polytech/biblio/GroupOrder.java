@@ -14,9 +14,10 @@ public class GroupOrder extends AbstractOrder {
 
     }
 
-    public GroupOrder(int id, Customer customer){
+    public GroupOrder(int id, Customer customer,AbstractOrder abstractOrder){
         super(id,customer);
         this.orders = new ArrayList<AbstractOrder>();
+        orders.add(abstractOrder);
     }
 
     public void addOrder(AbstractOrder order){

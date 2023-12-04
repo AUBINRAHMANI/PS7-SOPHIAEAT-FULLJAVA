@@ -3,6 +3,6 @@ Feature: # Enter feature name here
   # Enter feature description here
 
   Scenario: ChooseDish
-    Given a customer "Toto" who has chosen the restaurant "Nice"
-    When "Toto" add a dish "Pizza"
-    Then the order price will increase by "Pizza" ‘s price
+    Given a customer "Toto" who has chosen the restaurant "KebabDelice"
+    When "Toto" add a dish "kebab"
+    Then the order price will increase by "kebab" ‘s price

@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 
 public class MyStepdefs_ChooseDish {
 
+    SimpleOrderBuilder simpleOrderBuilder;
     Restaurant restaurant;
     Customer customer;
     Dish dish;
@@ -26,23 +27,17 @@ public class MyStepdefs_ChooseDish {
     @Given("a customer {string} who has chosen the restaurant {string}")
     public void aCustomerWhoHasChosenTheRestaurant(String customerName, String restaurantName) {
         customer = new Customer(3 ,customerName, "Some Surname");
-        HourTime openingHour = new HourTime(10,0);
-        HourTime closingHour = new HourTime(22,0);
-        openingTime = new Schedules(openingHour, closingHour);
-        restaurant = new Restaurant(restaurantName, "7 avenue verte", openingTime);
-        //order = new Order(1, customer, restaurant, dishes);
-        orderController = new OrderController();
-        orderController.createOrder(1, customer, restaurant);
-        order = orderController.getOrderById(1);
-        orderController.chooseRestaurant(order, restaurant);
+        simpleOrderBuilder = new SimpleOrderBuilder();
+        restaurant = simpleOrderBuilder.createRestaurant(restaurantName);
+        simpleOrderBuilder.createOrder(customer,restaurant);
 
-
+        //Uniquement pour les tests
+        order = simpleOrderBuilder.orderController.getOrderById(customer.getId());
     }
 
     @When("{string} add a dish {string}")
     public void addADish(String customerName, String dish) {
-        this.dish = new Dish(dish,10);
-        orderController.addDish(order, this.dish);
+        simpleOrderBuilder.addDish(customer,dish);
         System.out.println(order.getPriceOrder());
     }
 

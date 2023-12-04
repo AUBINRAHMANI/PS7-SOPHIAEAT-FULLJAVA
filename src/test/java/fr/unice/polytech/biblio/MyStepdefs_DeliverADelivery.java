@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MyStepdefs_DeliverADelivery {
 
+        SimpleOrderBuilder simpleOrderBuilder;
         Deliverer deliverer;
         Order order;
         Schedules openingTime;

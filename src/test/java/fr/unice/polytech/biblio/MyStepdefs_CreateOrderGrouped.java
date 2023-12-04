@@ -1,13 +1,12 @@
 package fr.unice.polytech.biblio;
 
-<<<<<<< HEAD
-=======
 import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
->>>>>>> develop-2.0
+
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,37 +14,30 @@ import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertNotNull;
 
 
 public class MyStepdefs_CreateOrderGrouped {
 
+    SimpleOrderBuilder simpleOrderBuilder;
+
     Customer customerAlice;
+
+    Customer customerBob;
 
     Restaurant restaurant;
 
-    Dish dishHamburger;
-
-    Dish dishPizza;
-
-    OrderController orderController;
-
-    OrderGroupController orderGroupBuilder;
-
-    SimpleOrder order;
-
-    Schedules openingTime;
-
-    HourTime opening;
-
-    HourTime closing;
-
-    ArrayList<Dish> menu;
+    OrderGroupController orderGroupController;
 
     ArrayList<Dish> orderlist;
 
     SimpleOrder orderAlice;
 
     SimpleOrder orderBob;
+
+    OrderGroupBuilder orderGroupBuilder;
+
+    ArrayList<AbstractOrder> abstractOrders;
 
 
 
@@ -55,36 +47,17 @@ public class MyStepdefs_CreateOrderGrouped {
         customerAlice = new Customer(1, customerName, "huzog");
 
 
+
     }
 
     @When("{string} create an order simple with that dishes: {string}")
-    public void createAnOrderGroupedWithThatDishesAnd(String customerName, String hamburger, String pizza) {
+    public void createAnOrderGroupedWithThatDishesAnd(String customerName, String kebab) {
+        simpleOrderBuilder = new SimpleOrderBuilder();
+        restaurant = simpleOrderBuilder.createRestaurant("KebabDelice");
+        simpleOrderBuilder.createOrder(customerAlice,restaurant);
+        simpleOrderBuilder.addDish(customerAlice,kebab);
 
-        dishHamburger = new Dish(hamburger,15);
-        dishPizza = new Dish(pizza,13);
-
-        opening = new HourTime(18,30);
-        closing = new HourTime(1,0);
-        openingTime = new Schedules(opening,closing);
-
-        menu = new ArrayList<Dish>();
-        menu.add(dishHamburger);
-        menu.add(dishPizza);
-
-        restaurant = new Restaurant("kebabiste","13 rue des kebabs Nice",menu,openingTime);
-
-        orderController = new OrderController();
-<<<<<<< HEAD
-        orderGroupBuilder = new OrderGroupController();
-
-        orderController.createOrder(1,customerAlice,restaurant);
-        orderAlice = orderController.getOrderById(1);
-        orderController.chooseRestaurant(orderAlice,restaurant);
-        orderController.addDish(orderAlice,dishHamburger);
-=======
-        orderGroupBuilder = new OrderGroupBuilder(  1, customerAlice);
-
-//        orderController.chooseRestaurant(restaurant);
+        orderAlice = simpleOrderBuilder.orderController.getOrderById(customerAlice.getId());
 //
 //        orderController.createOrder(1,customerAlice,restaurant);
 //        orderController.createOrder(2,customerAlice,restaurant); // mettre bob, modifier la classe pour que ca soit une liste d'order pour retrouver (exemple avec les id)
@@ -93,30 +66,31 @@ public class MyStepdefs_CreateOrderGrouped {
 
 
 
-
-
-
-
-
-
->>>>>>> develop-2.0
-
-
        // orderController.createOrder(2,customerAlice,restaurant); // mettre bob, modifier la classe pour que ca soit une liste d'order pour retrouver (exemple avec les id)// orderBob = orderController.getOrderById(2);
       //orderController.addDish(orderBob,dishPizza);
 
     }
 
     @And("{string} create another order simple for user {string} with that dishes : {string}")
-    public void createAnotherOrderSimpleForUserWithThatDishes(String customerAlice, String customerBob, String pizza) {
+    public void createAnotherOrderSimpleForUserWithThatDishes(String nameAlice, String nameBob, String fries) {
+        customerBob = new Customer(2, nameBob, "huzog");
+        orderGroupBuilder = new OrderGroupBuilder();
 
-        orderGroupBuilder = new OrderGroupController();
-        orderGroupBuilder.addOrder(orderAlice);
-        orderGroupBuilder.addOrder(orderBob);
+        orderGroupBuilder.createGroupOrder(customerAlice,orderAlice);
+        simpleOrderBuilder.createOrder(customerBob,restaurant);
+        orderBob = simpleOrderBuilder.orderController.getOrderById(customerBob.getId());
+        simpleOrderBuilder.addDish(customerBob,fries);
+        orderGroupBuilder.addOrder(customerAlice,orderBob);
+
+        abstractOrders = orderGroupBuilder.getOrderGroupController().getOrders();
+
     }
 
     @Then("the order grouped is created")
     public void theOrderGroupedIsCreated() {
+
+        assertNotNull(abstractOrders);
+
     }
 
 
