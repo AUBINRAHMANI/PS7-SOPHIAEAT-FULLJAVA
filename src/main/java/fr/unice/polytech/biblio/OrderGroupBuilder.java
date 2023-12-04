@@ -28,6 +28,7 @@ public class OrderGroupBuilder {
         return this.orderGroupController;
     }
 
+
 //    public OrderGroupBuilder(){
 //        this.order=null;
 //    }
@@ -39,6 +40,7 @@ public class OrderGroupBuilder {
 //    }
 
     /*
+
     public OrderGroupBuilder addOrder(AbstractOrder order) {
         this.orders.add(order);
         return this;
@@ -51,7 +53,6 @@ public class OrderGroupBuilder {
 
         return new GroupOrder(orderId, customer, orders);
     }
-
      */
 
 }

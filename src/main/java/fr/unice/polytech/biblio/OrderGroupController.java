@@ -49,4 +49,7 @@ public class OrderGroupController {
     }
     */
 
+    public Object getOrderGrouped() {
+        return this.order;
+    }
 }

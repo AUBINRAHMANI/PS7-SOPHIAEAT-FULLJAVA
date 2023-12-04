@@ -6,10 +6,16 @@ import fr.unice.polytech.biblio.Person.Customer;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
+import net.bytebuddy.asm.Advice;
 
+<<<<<<< HEAD
 import java.security.interfaces.DSAKey;
+=======
+import java.time.LocalDate;
+>>>>>>> develop-2.0
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 public class OrderController {
     //private SimpleOrder order;
@@ -123,9 +129,6 @@ public class OrderController {
            }
        }
     }
-    /*public SimpleOrder getOrder() {
-        return this.order;
-    }*/
 
     public PayementSystem getPayementSystem() {
         return this.payementSystem;
@@ -136,8 +139,10 @@ public class OrderController {
 
     }
 
-    public void pay(SimpleOrder order, int prix){
+    public void pay(SimpleOrder order, double prix){
         Restaurant restaurant = order.getRestaurant();
+        checkDiscount(order.getCustomer());
+        prix = prix * order.customer.getPriceRate();
         if(order.getPayementSystem().getPayementState().equals(PayementState.UNLOCK)){
            if(order.pay(prix))
             validatePayement(order);
@@ -164,8 +169,34 @@ public class OrderController {
         order.getPayementSystem().setPayementState(PayementState.LOCK);
     }
 
+<<<<<<< HEAD
     public Restaurant getRestaurant(SimpleOrder order){
         return order.getRestaurant();
+=======
+    public List<SimpleOrder> ordersForDiscount(Customer customer, LocalDate currentDate) {
+        List<SimpleOrder> validOrders = new ArrayList<>();
+        List<SimpleOrder> orders = getOrdersByCustomer(customer);
+        for(SimpleOrder order : orders) {
+            if(!order.isUsedForDiscount() && order.getOrderState()==OrderState.DELIVERED) {
+                validOrders.add(order);
+            }
+        }
+        return validOrders;
+    }
+
+    public void checkDiscount(Customer customer) {
+        LocalDate currentDate = LocalDate.now();
+        if(!customer.validForDiscount(currentDate)) {
+            customer.setPriceRate(1);
+        }
+
+        List<SimpleOrder> validOrders = ordersForDiscount(customer, currentDate);
+        if(validOrders.size() >= 10) {
+            customer.setPriceRate(0.95);
+            customer.setLastDiscount(LocalDate.now());
+            validOrders.forEach(vo -> vo.setUsedForDiscount(true));
+        }
+>>>>>>> develop-2.0
     }
 
 }
