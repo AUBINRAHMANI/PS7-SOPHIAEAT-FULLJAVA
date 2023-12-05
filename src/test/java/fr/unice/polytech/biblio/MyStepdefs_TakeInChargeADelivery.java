@@ -23,7 +23,6 @@ public class MyStepdefs_TakeInChargeADelivery {
         SimpleOrderBuilder simpleOrderBuilder;
         @Given("a deliverer {string},")
         public void aDeliverer(String delivererName) {
-
                 deliverer = new Deliverer(3,delivererName, "Jacky");
                 customer = new Customer(1,"jean","paul");
         }
@@ -48,6 +47,7 @@ public class MyStepdefs_TakeInChargeADelivery {
 
         @Then("the delivery is assigned to the deliverer {string}")
         public void theDeliveryIsAssignedToTheDeliverer(String arg0) {
+                deliverer.TakeInChargeAnOrder(order);
 
         }
 

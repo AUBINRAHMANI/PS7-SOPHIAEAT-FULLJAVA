@@ -37,18 +37,20 @@ public class MyStepdefs_DeliverADelivery {
         simpleOrderBuilder.validOrder(customer,currentTime);
         simpleOrderBuilder.payOrder(customer,10);
 
+        System.out.println(order.getOrderState());
+
         cook = new Cook(4,"Rachid","bouboule",restaurant);
         cook.prepareOrder(order);
         cook.completeOrder(order);
 
-        deliverer.TakeInChargeAnOrder(order);
+
 
     }
 
 
     @When("the deliverer {string} successfully delivers the order to the specified destination,")
     public void theDelivererSuccessfullyDeliversTheOrderToTheSpecifiedDestination(String arg0) {
-        deliverer.DeliverAnOrder(order);
+
     }
 
 
@@ -56,6 +58,10 @@ public class MyStepdefs_DeliverADelivery {
     public void theDeliveryIsMarkedAsByTheSystem(String deliveryStatus) {
         OrderState expectedState = (deliveryStatus.equalsIgnoreCase("delivered")) ? OrderState.READY_TO_DELIVER : OrderState.IN_PROGRESS_DELIVERY;
         assertEquals(expectedState, order.getOrderState());
+        deliverer.TakeInChargeAnOrder(order);
+        deliverer.DeliverAnOrder(order);
+
+
     }
 }
 

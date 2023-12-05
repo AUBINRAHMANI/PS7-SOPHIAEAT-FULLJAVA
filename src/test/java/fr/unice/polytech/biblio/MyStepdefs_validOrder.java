@@ -24,27 +24,18 @@ public class MyStepdefs_validOrder {
 
     SimpleOrder order;
 
-    Dish dish;
-
-  //  ArrayList<Dish> dishes = new ArrayList<>();
-
-    //OrderController orderController;
-    Schedules openingTime;
-    //PayementSystem payementSystem;
-
-
     @Given("a customer {string} {string} who has already chosen the restaurant {string} and with a filled order")
     public void aCustomerWhohasAlreadyChosenTheRestaurant(String customerName,String customerSurname, String restaurantName) {
         customer = new Customer(4, customerName, customerSurname);
         orderBuilder = new SimpleOrderBuilder();
-        restaurant = orderBuilder.createRestaurant("KebabDelice");
+        restaurant = orderBuilder.createRestaurant(restaurantName);
         orderBuilder.createOrder(customer, restaurant);
         order = orderBuilder.orderController.getOrderById(customer.getId()); // present uniquement pour les tests
     }
 
     @When("{string} decides to validate order")
     public void aCustomerValidateOrder(String customerName) {
-        orderBuilder.addDish(customer,"kebab");
+        orderBuilder.addDish(customer,"royalSalad");
        // System.out.println(order.getPriceOrder());
         HourTime currentTime = new HourTime(17,15);
         orderBuilder.validOrder(customer,currentTime);
@@ -61,10 +52,10 @@ public class MyStepdefs_validOrder {
         assertEquals(order.getOrderState(),OrderState.VALIDATED);
         assertEquals(PayementState.UNLOCK, payementSystem.getPayementState());
 
-        orderBuilder.payOrder(customer,10);
+        orderBuilder.payOrder(customer,25);
 
         System.out.println(1);
-        assertEquals(OrderState.PAID,order.getOrderState());
+        assertEquals(OrderState.READY_TO_COOK,order.getOrderState());
         }
 
 

@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class MyStepdefs_LauchOrder {
 
     Customer customer;
+    SimpleOrderBuilder simpleOrderBuilder;
     Restaurant restaurant;
     Dish pizza;
    // ArrayList<Dish> dishes;
@@ -26,24 +27,15 @@ public class MyStepdefs_LauchOrder {
     @Given("restaurant {string} with a paid order for user {string}")
     public void paidOrderofUser(String restaurantName, String userName){
 
-        Customer customer = new Customer(2,userName,"huzog");
-        pizza = new Dish("pizza", 15);
-        HourTime openingHour = new HourTime(10,0);
-        HourTime closingHour = new HourTime(22,0);
-        openingTime = new Schedules(openingHour, closingHour);
-        restaurant = new Restaurant(restaurantName, "2 impasse de l'etoile", openingTime);
-        restaurant.addDish(pizza);
-        orderController = new OrderController();
-        orderController.createOrder(1,customer,restaurant);
-        order = orderController.getOrderById(1);
-
-        orderController.addDish(order, pizza);
-        System.out.println(order.getDishes());
+        customer = new Customer(2,userName,"huzog");
+        simpleOrderBuilder = new SimpleOrderBuilder();
+        restaurant = simpleOrderBuilder.createRestaurant(restaurantName);
+        simpleOrderBuilder.createOrder(customer,restaurant);
+        simpleOrderBuilder.addDish(customer,"kebab");
+        order = simpleOrderBuilder.orderController.getOrderById(customer.getId());
         HourTime currentTime = new HourTime(14,30);
-        orderController.validateOrder(order, currentTime);
-
-        orderController.pay(order,15);
-        orderController.notify(order, restaurant);
+        simpleOrderBuilder.validOrder(customer, currentTime);
+        simpleOrderBuilder.payOrder(customer,10);
         assertEquals(order.getOrderState(),OrderState.READY_TO_COOK);
     }
 
