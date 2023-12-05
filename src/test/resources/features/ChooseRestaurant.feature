@@ -4,7 +4,7 @@ Feature: Order Pass
 
   Scenario: Choose Restaurant
     Given a customer "Toto" "Dupond"
-    When "Toto" choose the restaurant "Nice"
-    Then he will be able to add dishes from the restaurant "Nice"
+    When "Toto" choose the restaurant "Le chinois de Nice"
+    Then he will be able to add dishes from the restaurant "Le chinois de Nice"
 
 

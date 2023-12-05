@@ -14,12 +14,16 @@ public class GroupOrder extends AbstractOrder {
 
     }
 
-    public GroupOrder(int id, Customer customer){
+    public GroupOrder(int id, Customer customer,AbstractOrder abstractOrder){
         super(id,customer);
         this.orders = new ArrayList<AbstractOrder>();
+        orders.add(abstractOrder);
     }
 
     public void addOrder(AbstractOrder order){
+        if(order.getId()==this.getId()){
+            throw new RuntimeException("Impossible de mettre deux fois une meme commande");
+        }
         this.orders.add(order);
     }
 
@@ -41,4 +45,5 @@ public class GroupOrder extends AbstractOrder {
     public OrderState getOrderState() {
         return orderState;
     }
+
 }

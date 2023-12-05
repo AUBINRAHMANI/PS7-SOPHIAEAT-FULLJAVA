@@ -25,11 +25,5 @@ class SimpleOrderBuilderTest {
     public void testCreateOrder() {
     }
 
-    @Test
-    public void testCreateRestaurant() {
-        simpleOrderBuilder.createRestaurant("AnotherRestaurant", "AnotherAddress");
-
-    }
-
 
 }

@@ -8,7 +8,9 @@ import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import net.bytebuddy.asm.Advice;
 
+
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -55,9 +57,12 @@ public class OrderController {
         }
     }
 
-    public void chooseRestaurant(SimpleOrder order, Restaurant restaurant) {
+    public void addDishes(SimpleOrder order, ArrayList<Dish> dishes) {
         if (order != null) {
-            order.setRestaurant(restaurant);
+            for(Dish dish : dishes){
+                order.addDish(dish);
+            }
+
         } else {
             System.out.println("No order created yet. Please create an order first.");
         }
@@ -145,6 +150,7 @@ public class OrderController {
         System.out.println(order.getPayementSystem().getPayementState());
         if(order.getPayementSystem().isValid()) {
             order.setOrderState(OrderState.PAID);
+            System.out.println("Votre commande à bien été payé");
             //restaurant.orderGetReady(this.getOrder());
         }
 
@@ -159,6 +165,11 @@ public class OrderController {
     public void cancelOrder(SimpleOrder order) {
         order.setOrderState(OrderState.CANCELLED);
         order.getPayementSystem().setPayementState(PayementState.LOCK);
+    }
+
+
+    public Restaurant getRestaurant(SimpleOrder order) {
+        return order.getRestaurant();
     }
 
     public List<SimpleOrder> ordersForDiscount(Customer customer, LocalDate currentDate) {

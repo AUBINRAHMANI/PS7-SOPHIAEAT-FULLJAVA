@@ -11,12 +11,14 @@ import io.cucumber.java.en.When;
 import static org.junit.Assert.assertEquals;
 
 public class MyStepdefs_ChangeRestaurantHours {
+
+    SimpleOrderBuilder simpleOrderBuilder;
     RestaurantManager restaurantManager;
     Restaurant restaurant;
     @Given("a manager {string} of the restaurant {string}")
     public void aManagerOfTheRestaurant(String managerName, String restaurantName) {
-        Schedules openingTime = new Schedules(new HourTime(11,0), new HourTime(17,0));
-        restaurant = new Restaurant(restaurantName, "1 rue du maire", openingTime);
+        simpleOrderBuilder = new SimpleOrderBuilder();
+        restaurant=simpleOrderBuilder.createRestaurant(restaurantName);
         restaurantManager = new RestaurantManager(1,managerName,"Dupont",restaurant);
     }
 

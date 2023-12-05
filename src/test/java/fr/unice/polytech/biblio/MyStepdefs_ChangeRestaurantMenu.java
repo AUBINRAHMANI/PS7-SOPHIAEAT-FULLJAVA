@@ -16,39 +16,36 @@ import static org.junit.Assert.assertEquals;
 
 public class MyStepdefs_ChangeRestaurantMenu {
 
+    SimpleOrderBuilder simpleOrderBuilder;
+
     RestaurantManager restaurantManager;
     Restaurant restaurant;
     @Given("a restaurant manager {string} of the restaurant {string}")
     public void aManagerOfTheRestaurant(String managerName, String restaurantName) {
-        Schedules openingTime = new Schedules(new HourTime(11,0), new HourTime(17,0));
-        Dish burger = new Dish("Burger", (float)10.5);
-        Dish salad = new Dish("Salad", (float)12);
-        ArrayList<Dish> dishes = new ArrayList<>();
-        dishes.add(burger);
-        dishes.add(salad);
-        restaurant = new Restaurant(restaurantName, "1 rue du maire", dishes, openingTime);
+        simpleOrderBuilder = new SimpleOrderBuilder();
+        restaurant = simpleOrderBuilder.createRestaurant("KebabDelice");
         restaurantManager = new RestaurantManager(1,managerName,"Dupont",restaurant);
     }
     @When("the manager decides to add a dish {string} costing {float}")
     public void theManagerDecidesToAddADishCosting(String dishName, float dishPrice) {
-        Dish pizza = new Dish(dishName, dishPrice);
-        restaurantManager.addDishToMenu(pizza);
+        Dish tacos = new Dish(dishName, dishPrice);
+        restaurantManager.addDishToMenu(tacos);
     }
 
     @Then("the restaurant have a new dish")
     public void theRestaurantHaveANewDish() {
-        assertEquals(3, restaurantManager.getRestaurant().getDishes().size());
+        assertEquals(7, restaurantManager.getRestaurant().getDishes().size());
     }
 
     @When("the manager decides to remove the dish {string} costing {float}")
     public void theManagerDecidesToRemoveTheDishCosting(String dishName, float dishPrice) {
-        Dish burger = new Dish(dishName, dishPrice);
-        restaurantManager.removeDishOfMenu(burger);
+        Dish kebab = new Dish(dishName, dishPrice);
+        restaurantManager.removeDishOfMenu(kebab);
     }
 
     @Then("the restaurant don't have the dish anymore")
     public void theRestaurantDonTHaveTheDishAnymore() {
-        assertEquals(1, restaurantManager.getRestaurant().getDishes().size());
+        assertEquals(5, restaurantManager.getRestaurant().getDishes().size());
     }
 
     @When("the manager decides change the price of the dish {string} from {float} to {float}")

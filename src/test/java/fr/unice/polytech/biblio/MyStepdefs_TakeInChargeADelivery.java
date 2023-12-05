@@ -17,24 +17,27 @@ public class MyStepdefs_TakeInChargeADelivery {
 
         Deliverer deliverer;
         Restaurant restaurant;
-        Order order;
-        Dish dish;
+        SimpleOrder order;
+        Customer customer;
         OrderController orderController;
-        Schedules openingTime;
-
+        SimpleOrderBuilder simpleOrderBuilder;
         @Given("a deliverer {string},")
         public void aDeliverer(String delivererName) {
                 deliverer = new Deliverer(3,delivererName, "Jacky");
+                customer = new Customer(1,"jean","paul");
         }
 
 
         @When("the deliverer {string} selects to take charge of a delivery,")
         public void theDelivererSelectsToTakeChargeOfADelivery(String arg0) {
-                HourTime openingHour = new HourTime(10,0);
-                HourTime closingHour = new HourTime(22,0);
-                openingTime = new Schedules(openingHour, closingHour);
-                restaurant = new Restaurant("McDonalds", "34 rue de montmartre", openingTime);
-                order = new Order(1, new Customer(1,"Jean", "Bon"), restaurant);
+                simpleOrderBuilder = new SimpleOrderBuilder();
+                restaurant = simpleOrderBuilder.createRestaurant("KebabDelice");
+                simpleOrderBuilder.createOrder(customer,restaurant);
+                simpleOrderBuilder.addDish(customer,"kebab");
+                order = simpleOrderBuilder.orderController.getOrderById(customer.getId());
+
+                //evidemment faire toute la demarche
+
                 order.setOrderState(OrderState.READY_TO_DELIVER);
                 orderController = new OrderController();
                 orderController.createOrder(1, new Customer(3,"Jean", "Bon"), restaurant);
@@ -44,6 +47,7 @@ public class MyStepdefs_TakeInChargeADelivery {
 
         @Then("the delivery is assigned to the deliverer {string}")
         public void theDeliveryIsAssignedToTheDeliverer(String arg0) {
+                deliverer.TakeInChargeAnOrder(order);
 
         }
 
