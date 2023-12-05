@@ -43,13 +43,13 @@ public class MyStepdefs_DeliverADelivery {
         cook.prepareOrder(order);
         cook.completeOrder(order);
 
-
-
     }
 
 
     @When("the deliverer {string} successfully delivers the order to the specified destination,")
     public void theDelivererSuccessfullyDeliversTheOrderToTheSpecifiedDestination(String arg0) {
+        deliverer.TakeInChargeAnOrder(order);
+        deliverer.DeliverAnOrder(order);
 
     }
 
@@ -58,8 +58,6 @@ public class MyStepdefs_DeliverADelivery {
     public void theDeliveryIsMarkedAsByTheSystem(String deliveryStatus) {
         OrderState expectedState = (deliveryStatus.equalsIgnoreCase("delivered")) ? OrderState.DELIVERED : OrderState.IN_PROGRESS_DELIVERY;
         assertEquals(expectedState, order.getOrderState());
-        deliverer.TakeInChargeAnOrder(order);
-        deliverer.DeliverAnOrder(order);
 
 
     }
