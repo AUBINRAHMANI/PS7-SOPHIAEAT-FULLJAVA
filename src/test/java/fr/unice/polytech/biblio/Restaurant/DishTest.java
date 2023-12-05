@@ -1,4 +1,4 @@
-package fr.unice.polytech.biblio;
+package fr.unice.polytech.biblio.Restaurant;
 
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import org.junit.jupiter.api.BeforeEach;
