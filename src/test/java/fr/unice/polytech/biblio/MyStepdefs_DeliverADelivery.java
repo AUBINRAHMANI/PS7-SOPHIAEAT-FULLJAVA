@@ -54,7 +54,7 @@ public class MyStepdefs_DeliverADelivery {
 
     @Then("the delivery is marked as {string} by the system.")
     public void theDeliveryIsMarkedAsByTheSystem(String deliveryStatus) {
-        OrderState expectedState = (deliveryStatus.equalsIgnoreCase("delivered")) ? OrderState.READY_TO_DELIVER : OrderState.IN_PROGRESS_DELIVERY;
+        OrderState expectedState = (deliveryStatus.equalsIgnoreCase("delivered")) ? OrderState.DELIVERED : OrderState.IN_PROGRESS_DELIVERY;
         assertEquals(expectedState, order.getOrderState());
     }
 }

@@ -64,7 +64,7 @@ public class MyStepdefs_validOrder {
         orderBuilder.payOrder(customer,10);
 
         System.out.println(1);
-        assertEquals(OrderState.PAID,order.getOrderState());
+        assertEquals(OrderState.READY_TO_COOK,order.getOrderState());
         }
 
 
