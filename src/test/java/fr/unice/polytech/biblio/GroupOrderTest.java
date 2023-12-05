@@ -21,8 +21,9 @@ class GroupOrderTest {
 
     @BeforeEach
     void setUp() {
+        AbstractOrder order = new SimpleOrder(2, customer,restaurant);
         customer = new Customer(1, "Alice", "Bob");
-        groupOrder = new GroupOrder(1, customer);
+        groupOrder = new GroupOrder(1, customer,order);
         Schedules schedules = new Schedules(new HourTime(10,00), new HourTime(22,00));
         restaurant = new Restaurant("Kebab", "McDonald's", schedules);
     }
@@ -31,7 +32,7 @@ class GroupOrderTest {
     void testAddOrder() {
         AbstractOrder order = new SimpleOrder(2, customer,restaurant);
         groupOrder.addOrder(order);
-        assertEquals(1, groupOrder.getOrders().size());
+        assertEquals(2, groupOrder.getOrders().size());
     }
 
     @Test
@@ -42,7 +43,7 @@ class GroupOrderTest {
         groupOrder.addOrder(order2);
         ArrayList<AbstractOrder> orders = groupOrder.getOrders();
         assertNotNull(orders);
-        assertEquals(2, orders.size());
+        assertEquals(3, orders.size());
         assertTrue(orders.contains(order1));
         assertTrue(orders.contains(order2));
     }

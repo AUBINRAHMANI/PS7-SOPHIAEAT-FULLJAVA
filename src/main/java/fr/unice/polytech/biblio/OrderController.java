@@ -8,11 +8,9 @@ import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 import net.bytebuddy.asm.Advice;
 
-<<<<<<< HEAD
-import java.security.interfaces.DSAKey;
-=======
+
 import java.time.LocalDate;
->>>>>>> develop-2.0
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -169,10 +167,11 @@ public class OrderController {
         order.getPayementSystem().setPayementState(PayementState.LOCK);
     }
 
-<<<<<<< HEAD
-    public Restaurant getRestaurant(SimpleOrder order){
+
+    public Restaurant getRestaurant(SimpleOrder order) {
         return order.getRestaurant();
-=======
+    }
+
     public List<SimpleOrder> ordersForDiscount(Customer customer, LocalDate currentDate) {
         List<SimpleOrder> validOrders = new ArrayList<>();
         List<SimpleOrder> orders = getOrdersByCustomer(customer);
@@ -196,7 +195,6 @@ public class OrderController {
             customer.setLastDiscount(LocalDate.now());
             validOrders.forEach(vo -> vo.setUsedForDiscount(true));
         }
->>>>>>> develop-2.0
     }
 
 }

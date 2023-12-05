@@ -6,6 +6,7 @@ import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Schedules;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
 
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,7 +14,7 @@ import io.cucumber.java.en.When;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 
 public class MyStepdefs_CreateOrderGrouped {
@@ -26,37 +27,19 @@ public class MyStepdefs_CreateOrderGrouped {
 
     Restaurant restaurant;
 
-    OrderGroupController orderGroupController;
-
-    OrderController orderController;
-
-    SimpleOrder order;
-
-    Schedules openingTime;
-
-    HourTime opening;
-
-    HourTime closing;
-
-    ArrayList<Dish> menu;
-
-
-    ArrayList<Dish> orderlist;
-
     SimpleOrder orderAlice;
 
     SimpleOrder orderBob;
 
     OrderGroupBuilder orderGroupBuilder;
 
-    ArrayList<AbstractOrder> groupOrders;
+    GroupOrder groupOrdersAlice;
 
 
 
     @Given("a connected user {string}")
     public void aConnectedUser(String customerName) {
         customerAlice = new Customer(1, customerName, "Alice");
-
 
     }
 
@@ -89,16 +72,18 @@ public class MyStepdefs_CreateOrderGrouped {
         simpleOrderBuilder.addDish(customerBob,fries);
         orderGroupBuilder.addOrder(customerAlice,orderBob);
 
-        groupOrders = orderGroupBuilder.getOrderGroupController().getOrders();
+
+        groupOrdersAlice = orderGroupBuilder.getOrderGroupController().getGroupOrderByid(customerAlice.getId());
 
 
     }
 
     @Then("the order grouped is created")
     public void theOrderGroupedIsCreated() {
-
-
-        assertNotNull(groupOrders);
+        System.out.println(groupOrdersAlice.getOrders().toString());
+        assertEquals(2,groupOrdersAlice.getOrders().size());
+        //orderGroupBuilder.addOrder(customerAlice,orderAlice); Enlever les // pour montrer qu'on ne peut pas mettre deux fois une meme commande
+        assertNotNull(groupOrdersAlice);
     }
 
 

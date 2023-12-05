@@ -21,7 +21,8 @@ public class OrderGroupBuilder {
     }
 
     public void addOrder(Customer customer, AbstractOrder order){
-        orderGroupController.addOrder(order);
+        GroupOrder groupOrder = orderGroupController.getGroupOrderByid(customer.getId());
+        orderGroupController.addOrder(groupOrder,order);
     }
 
     public OrderGroupController getOrderGroupController(){

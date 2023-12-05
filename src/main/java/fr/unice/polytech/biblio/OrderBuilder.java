@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class OrderBuilder {
 
-   OrderController orderController;
+   SimpleOrderBuilder simpleOrderBuilder;
 
    OrderGroupController orderGroupController;
 
@@ -14,11 +14,11 @@ public abstract class OrderBuilder {
 
    public void createOrder(AbstractOrder order) {
       if (order instanceof SimpleOrder) {
-         return;
+         simpleOrderBuilder = new SimpleOrderBuilder();
       }
 
       else if (order instanceof GroupOrder) {
-         OrderGroupController orderGroupController = new OrderGroupController((GroupOrder) order);
+         orderGroupController = new OrderGroupController();
       }
    }
 

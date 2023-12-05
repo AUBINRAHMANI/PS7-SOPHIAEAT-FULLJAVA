@@ -10,32 +10,34 @@ public class OrderGroupController {
 
    private GroupOrder groupOrder;
 
-   public ArrayList<AbstractOrder> orders;
+   public ArrayList<GroupOrder> groupOrders;
 
 
     public OrderGroupController(){
-        this.orders = new ArrayList<AbstractOrder>();
-    }
-
-    public OrderGroupController(GroupOrder order){
-        this.orders = new ArrayList<>();
-        this.orders.add(order);
+        this.groupOrders = new ArrayList<GroupOrder>();
     }
 
 
-    public void addOrder(AbstractOrder order){
-        this.orders.add(order);
+    public GroupOrder getGroupOrderByid(int id){
+        GroupOrder currentGroupOrder = null;
+        for(GroupOrder groupOrder1 : groupOrders ){
+            if(groupOrder1.getId()==id){
+                currentGroupOrder=groupOrder1;
+            }
+        }
+        return currentGroupOrder;
+    }
 
+
+    public void addOrder(GroupOrder groupOrder,AbstractOrder order){
+       groupOrder.addOrder(order);
     }
 
     public void createGroupedOrder(int id, Customer customer, AbstractOrder order) {
         groupOrder = new GroupOrder(id,customer,order);
-        groupOrder.addOrder(order);
+        groupOrders.add(groupOrder);
     }
 
-    public ArrayList<AbstractOrder> getOrders(){
-        return this.orders;
-    }
 
     /*
     public void createGroupedOrder(int id, Customer customer, ArrayList<AbstractOrder> orders) {
@@ -49,7 +51,4 @@ public class OrderGroupController {
     }
     */
 
-    public Object getOrderGrouped() {
-        return this.order;
-    }
 }

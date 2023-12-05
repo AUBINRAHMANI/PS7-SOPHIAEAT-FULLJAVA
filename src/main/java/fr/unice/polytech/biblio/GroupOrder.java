@@ -21,6 +21,9 @@ public class GroupOrder extends AbstractOrder {
     }
 
     public void addOrder(AbstractOrder order){
+        if(order.getId()==this.getId()){
+            throw new RuntimeException("Impossible de mettre deux fois une meme commande");
+        }
         this.orders.add(order);
     }
 
@@ -42,4 +45,5 @@ public class GroupOrder extends AbstractOrder {
     public OrderState getOrderState() {
         return orderState;
     }
+
 }

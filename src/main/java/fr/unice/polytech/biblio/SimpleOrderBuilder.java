@@ -66,6 +66,7 @@ public class SimpleOrderBuilder extends OrderBuilder{
     public void payOrder(Customer customer, int prix){
         SimpleOrder currentOrder = orderController.getOrderById(customer.getId());
         orderController.pay(currentOrder,prix);
+        orderController.notify(currentOrder,currentOrder.getRestaurant());
     }
 
   //  public void createOrder(SimpleOrder order) {
