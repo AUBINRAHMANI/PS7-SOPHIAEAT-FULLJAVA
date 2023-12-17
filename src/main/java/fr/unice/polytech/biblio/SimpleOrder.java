@@ -10,15 +10,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class SimpleOrder extends AbstractOrder{
-    private Restaurant restaurant;
+    protected Restaurant restaurant;
 
-    private double priceOrder;
+    protected double priceOrder;
 
-    private ArrayList<Dish> dishes;
+    protected ArrayList<Dish> dishes;
 
-    private PayementSystem payementSystem;
+    protected PayementSystem payementSystem;
 
-    private boolean usedForDiscount;
+    protected boolean usedForDiscount;
+    protected boolean isBuffet;
+
+
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant, int priceOrder){
         super(id,customer);
@@ -70,6 +73,13 @@ public class SimpleOrder extends AbstractOrder{
         this.priceOrder += dish.getPrice();
     }
 
+    public void addDish(Dish dish, int number){
+        for(int i=0; i<number;i++){
+            dishes.add(dish);
+            this.priceOrder += dish.getPrice();
+        }
+    }
+
     public ArrayList<Dish> getDishes(){
         return this.dishes;
     }
@@ -102,5 +112,9 @@ public class SimpleOrder extends AbstractOrder{
 
     public void setUsedForDiscount(boolean usedForDiscount) {
         this.usedForDiscount = usedForDiscount;
+    }
+
+    public boolean getBuffetState(){
+        return this.isBuffet;
     }
 }

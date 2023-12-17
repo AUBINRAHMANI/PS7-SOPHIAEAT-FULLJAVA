@@ -1,5 +1,6 @@
 package fr.unice.polytech.biblio;
 
+import fr.unice.polytech.biblio.Person.Collective;
 import fr.unice.polytech.biblio.Restaurant.*;
 import fr.unice.polytech.biblio.Restaurant.Restaurant.RestaurantBuilder;
 import fr.unice.polytech.biblio.Person.Customer;
@@ -21,6 +22,27 @@ public class SimpleOrderBuilder extends OrderBuilder{
 
     }
 
+    public void createBuffetOrder(Customer customer, Collective collective, Restaurant restaurant)
+    {
+        this.orderController.createBuffet(customer.getId(),customer, collective,restaurant);
+    }
+
+
+
+    public void addDish(Customer customer, String nameDish,int number) {
+        Dish emptyDish = null;
+        Restaurant currentRestaurant = this.orderController.getRestaurant(orderController.getOrderById(customer.getId()));
+        SimpleOrder order = this.orderController.getOrderById(customer.getId());
+        ArrayList<Dish> menu = currentRestaurant.getDishes();
+        for (Dish dish : menu) {
+            if (dish.getName().equals(nameDish)) {
+                this.orderController.addDish(order, dish, number);
+                emptyDish = dish;
+                break;
+            }
+        }
+        if (emptyDish == null) System.out.println("Ce restaurant ne contient pas ce plat !");
+    }
     public boolean addDish(Customer customer, Dish dish){
         boolean emptyDish = false;
         Restaurant currentRestaurant = this.orderController.getRestaurant(orderController.getOrderById(customer.getId()));
@@ -74,6 +96,10 @@ public class SimpleOrderBuilder extends OrderBuilder{
     public Restaurant createRestaurant(String restaurantName){
         RestaurantFactory restaurantFactory= new RestaurantFactory();
         return restaurantFactory.createRestaurant(restaurantName);
+    }
+
+    public void chooseHourtime(Buffet buffet,HourTime hourTime){
+        buffet.setHourTime(hourTime);
     }
 
 
