@@ -1,5 +1,7 @@
 package fr.unice.polytech.biblio.Restaurant;
 
+import java.util.Objects;
+
 public class HourTime {
     private int hour;
     private int minute;
@@ -33,5 +35,22 @@ public class HourTime {
             return -1;
         }
         return 0;
+    }
+
+    public String toString(){
+        return hour + " h " + minute + " min";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HourTime hourTime = (HourTime) o;
+        return hour == hourTime.hour && minute == hourTime.minute;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hour, minute);
     }
 }

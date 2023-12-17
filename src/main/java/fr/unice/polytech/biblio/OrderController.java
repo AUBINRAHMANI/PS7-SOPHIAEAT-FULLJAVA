@@ -2,10 +2,13 @@ package fr.unice.polytech.biblio;
 
 import fr.unice.polytech.biblio.Payement.PayementState;
 import fr.unice.polytech.biblio.Payement.PayementSystem;
+import fr.unice.polytech.biblio.Person.Collective;
 import fr.unice.polytech.biblio.Person.Customer;
+import fr.unice.polytech.biblio.Person.User;
 import fr.unice.polytech.biblio.Restaurant.Dish;
 import fr.unice.polytech.biblio.Restaurant.HourTime;
 import fr.unice.polytech.biblio.Restaurant.Restaurant;
+import fr.unice.polytech.biblio.Restaurant.Schedules;
 import net.bytebuddy.asm.Advice;
 
 
@@ -52,6 +55,15 @@ public class OrderController {
 
         if (order != null) {
             order.addDish(dish);
+        } else {
+            System.out.println("No order created yet. Please create an order first.");
+        }
+    }
+
+    public void addDish(SimpleOrder order, Dish dish, int n) {
+
+        if (order != null) {
+            order.addDish(dish,n);
         } else {
             System.out.println("No order created yet. Please create an order first.");
         }
@@ -110,6 +122,7 @@ public class OrderController {
            System.out.println("The order is empty please");
        }
        else {
+
            if(order.getOrderState()!=OrderState.PENDING) {
                System.out.println("The order can't be validated");
            }
@@ -197,4 +210,28 @@ public class OrderController {
         }
     }
 
+    public void createBuffet(int id, Customer customer, Collective collective , Restaurant restaurant, ArrayList<Dish> menu){
+        if (menu.size()>=collective.getNumberPerson()){
+            SimpleOrder buffet = new Buffet(id,customer,restaurant,menu);
+            PayementSystem payementSystem = new PayementSystem(id);
+            buffet.setPayementSystem(payementSystem);
+            orders.add(buffet);
+        }
+
+
+    }
+
+    public void choose(Buffet buffet, HourTime hourToDeliver){ //peut etre choisir une date
+        if(buffet.getOrderState().equals(OrderState.VALIDATED))
+        {
+            buffet.setHourTime(hourToDeliver);
+        }
+    }
+
+    public void createBuffet(int id, Customer customer, Collective collective, Restaurant restaurant) {
+        SimpleOrder buffet = new Buffet(id,customer,restaurant);
+        PayementSystem payementSystem = new PayementSystem(id);
+        buffet.setPayementSystem(payementSystem);
+        orders.add(buffet);
+    }
 }
