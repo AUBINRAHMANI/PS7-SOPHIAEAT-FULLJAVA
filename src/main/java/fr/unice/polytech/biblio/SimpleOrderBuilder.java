@@ -102,6 +102,10 @@ public class SimpleOrderBuilder extends OrderBuilder{
         buffet.setHourTime(hourTime);
     }
 
+    public String showMenu(Restaurant restaurant){
+        return orderController.showMenu(restaurant);
+    }
+
 
 
 

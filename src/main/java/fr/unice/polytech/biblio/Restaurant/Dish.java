@@ -29,7 +29,7 @@ public class Dish {
 
 
     public String toString() {
-        return "Dish [ name=" + name + ", price=" + price + "]";
+        return "Dish [ name : " + name + ", price : " + price + "€ ] \n";
     }
 
     @Override
