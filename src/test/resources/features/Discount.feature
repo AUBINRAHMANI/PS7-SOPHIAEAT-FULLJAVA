@@ -12,8 +12,4 @@ Feature: Discount
     When the user complete a new order
     Then he lose his discount
 
-#  Scenario: Discount prolongation
-#    Given a connected user "Tutu" who got a discount 10 days ago and ordered 9 times in the mean time
-#    When the user complete a new order
-#    Then the discount is prolongated
 

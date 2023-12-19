@@ -1,7 +1,6 @@
 package fr.unice.polytech.biblio.Person;
 
 import fr.unice.polytech.biblio.Buffet;
-import fr.unice.polytech.biblio.Order;
 import fr.unice.polytech.biblio.OrderState;
 import fr.unice.polytech.biblio.Person.User;
 import fr.unice.polytech.biblio.Restaurant.HourTime;

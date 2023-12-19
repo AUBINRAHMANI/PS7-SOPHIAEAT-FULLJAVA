@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class MyStepdefs_CancelOrder {
 
@@ -41,11 +42,22 @@ public class MyStepdefs_CancelOrder {
 
     }
 
-    @Then("The order is cancelled, and {string} can't validate his order")
+    @Then("The order is cancelled and deleted, and {string} can't validate his order but he can create one more")
     public void theOrderIsCancelledAndCanTValidateHisOrder(String customerName) {
         assertEquals(OrderState.CANCELLED,order.getOrderState());
         HourTime currentTime = new HourTime(13,15);
         simpleOrderBuilder.validOrder(customer,currentTime);
-        assertEquals(OrderState.CANCELLED,order.getOrderState());
+        assertNull(simpleOrderBuilder.orderController.getOrderById(customer.getId()));
+
+        //on test maintenant apres avoir payé
+        simpleOrderBuilder.createOrder(customer,restaurant);
+        SimpleOrder order2 = simpleOrderBuilder.orderController.getOrderById(customer.getId());
+        simpleOrderBuilder.addDish(customer,"royalSalad");
+        simpleOrderBuilder.validOrder(customer,currentTime);
+        System.out.println("Vous devez payer : " + order2.getPriceOrder());
+        simpleOrderBuilder.payOrder(customer,25);
+        simpleOrderBuilder.cancelOrder(customer);
+        assertEquals(OrderState.READY_TO_COOK,order2.getOrderState());
+
     }
 }

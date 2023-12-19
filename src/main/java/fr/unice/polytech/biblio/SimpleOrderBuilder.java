@@ -22,6 +22,10 @@ public class SimpleOrderBuilder extends OrderBuilder{
 
     }
 
+    public void createOrder(int id, Customer customer, Restaurant restaurant){
+        this.orderController.createOrder(id,customer,restaurant);
+    }
+
     public void createBuffetOrder(Customer customer, Collective collective, Restaurant restaurant)
     {
         this.orderController.createBuffet(customer.getId(),customer, collective,restaurant);
@@ -78,7 +82,6 @@ public class SimpleOrderBuilder extends OrderBuilder{
     public void validOrder(Customer customer, HourTime curentime){
         SimpleOrder currentOrder = orderController.getOrderById(customer.getId());
         orderController.validateOrder(currentOrder,curentime);
-        System.out.println("Vous avez validé votre panier");
     }
 
     public void cancelOrder(Customer customer){
