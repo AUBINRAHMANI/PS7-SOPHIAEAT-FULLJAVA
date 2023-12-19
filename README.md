@@ -23,7 +23,14 @@ Sur cette version initiale seule un test Junit5 est déclenché pour vérifier q
        - Cucumber 7 et JUnit 5  
        - JDK 17   
        - Etc.  
-   Ce pom.xml sera mis à jour avec la démonstration qui vous sera donnée ultérieurement.
+
+## Lancement du projet 
+
+Pour lancer les tests, executeer les commandes suivantes à la racine du projet : 
+
+```mvn test```
+
+```mvn clean package```
 
   
 
