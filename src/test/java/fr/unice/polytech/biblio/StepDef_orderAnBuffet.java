@@ -29,13 +29,13 @@ public class StepDef_orderAnBuffet {
 
     Deliverer deliverer;
 
-    @Given("public {string} order an buffet for his {int} students")
-    public void publicOrderAnBuffetForHisStudents(String polytechname, int numberOfStudents) {
+    @Given("the organization {string} orders an buffet for his {int} students at the restaurant {string}")
+    public void publicOrderAnBuffetForHisStudents(String polytechname, int numberOfStudents,String restaurantName) {
         simpleOrderBuilder = new SimpleOrderBuilder();
         customer = new Customer(1,polytechname,"nice");
         collective = new Collective(2,"etudiants","SI",numberOfStudents);
 
-        restaurant = simpleOrderBuilder.createRestaurant("KebabDelice");
+        restaurant = simpleOrderBuilder.createRestaurant(restaurantName);
         simpleOrderBuilder.createBuffetOrder(customer,collective,restaurant);
         buffet = (Buffet) simpleOrderBuilder.orderController.getOrderById(customer.getId());
 
