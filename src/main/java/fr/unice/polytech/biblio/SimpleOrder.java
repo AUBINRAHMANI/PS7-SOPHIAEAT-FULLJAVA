@@ -21,6 +21,7 @@ public class SimpleOrder extends AbstractOrder{
     protected boolean usedForDiscount;
     protected boolean isBuffet;
 
+    protected int rating;
 
 
     public SimpleOrder(int id, Customer customer, Restaurant restaurant, int priceOrder){
@@ -116,5 +117,16 @@ public class SimpleOrder extends AbstractOrder{
 
     public boolean getBuffetState(){
         return this.isBuffet;
+    }
+
+    public void setRating(int rating){
+        if (rating > 5 || rating < 0) {
+            throw new IllegalArgumentException("Rating must be between 0 and 5");
+        }
+        this.rating = rating;
+    }
+
+    public int getRating() {
+        return rating;
     }
 }
