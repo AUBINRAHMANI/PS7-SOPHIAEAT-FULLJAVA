@@ -27,9 +27,6 @@ public class MyStepdefs_payOrder {
         simpleOrderBuilder.createOrder(customer,restaurant);
         simpleOrderBuilder.addDish(customer,dishName);
         order=simpleOrderBuilder.orderController.getOrderById(customer.getId());
-
-
-
     }
 
     @When("{string} pays the order")

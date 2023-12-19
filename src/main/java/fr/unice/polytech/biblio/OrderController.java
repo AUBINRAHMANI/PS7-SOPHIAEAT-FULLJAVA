@@ -118,7 +118,11 @@ public class OrderController {
     }
 */
     public void validateOrder(SimpleOrder order, HourTime currentTime){
-       if(order.getDishes()==null) {
+       if(order==null){
+           System.out.println("The order does not exist");
+           return;}
+
+        if(order.getDishes()==null) {
            System.out.println("The order is empty please");
        }
        else {
@@ -129,6 +133,7 @@ public class OrderController {
            else {
                if(order.getRestaurant().isTimeValid(currentTime)) {
                    order.setOrderState(OrderState.VALIDATED);
+                   System.out.println("Vous avez validé votre panier");
                    System.out.println(2);
                    System.out.println(order.getPayementSystem());
                    order.getPayementSystem().setPayementState(PayementState.UNLOCK);
@@ -176,8 +181,13 @@ public class OrderController {
     }
 
     public void cancelOrder(SimpleOrder order) {
-        order.setOrderState(OrderState.CANCELLED);
-        order.getPayementSystem().setPayementState(PayementState.LOCK);
+        if(order.getOrderState().equals(OrderState.PENDING) || order.getOrderState().equals(OrderState.VALIDATED)){
+            order.setOrderState(OrderState.CANCELLED);
+            order.getPayementSystem().setPayementState(PayementState.LOCK);
+            orders.remove(order);
+        }
+        else System.out.println("Votre commande est : " + order.getOrderState() + ". \n Vous ne pouvez donc pas l'annuler !");
+
     }
 
 

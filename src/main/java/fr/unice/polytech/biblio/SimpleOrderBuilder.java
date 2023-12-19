@@ -78,7 +78,6 @@ public class SimpleOrderBuilder extends OrderBuilder{
     public void validOrder(Customer customer, HourTime curentime){
         SimpleOrder currentOrder = orderController.getOrderById(customer.getId());
         orderController.validateOrder(currentOrder,curentime);
-        System.out.println("Vous avez validé votre panier");
     }
 
     public void cancelOrder(Customer customer){
