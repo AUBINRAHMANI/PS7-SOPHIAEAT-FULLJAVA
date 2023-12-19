@@ -22,6 +22,10 @@ public class SimpleOrderBuilder extends OrderBuilder{
 
     }
 
+    public void createOrder(int id, Customer customer, Restaurant restaurant){
+        this.orderController.createOrder(id,customer,restaurant);
+    }
+
     public void createBuffetOrder(Customer customer, Collective collective, Restaurant restaurant)
     {
         this.orderController.createBuffet(customer.getId(),customer, collective,restaurant);

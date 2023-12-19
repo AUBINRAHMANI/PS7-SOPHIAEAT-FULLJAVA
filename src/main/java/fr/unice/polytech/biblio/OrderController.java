@@ -220,24 +220,6 @@ public class OrderController {
         }
     }
 
-    public void createBuffet(int id, Customer customer, Collective collective , Restaurant restaurant, ArrayList<Dish> menu){
-        if (menu.size()>=collective.getNumberPerson()){
-            SimpleOrder buffet = new Buffet(id,customer,restaurant,menu);
-            PayementSystem payementSystem = new PayementSystem(id);
-            buffet.setPayementSystem(payementSystem);
-            orders.add(buffet);
-        }
-
-
-    }
-
-    public void choose(Buffet buffet, HourTime hourToDeliver){ //peut etre choisir une date
-        if(buffet.getOrderState().equals(OrderState.VALIDATED))
-        {
-            buffet.setHourTime(hourToDeliver);
-        }
-    }
-
     public void createBuffet(int id, Customer customer, Collective collective, Restaurant restaurant) {
         SimpleOrder buffet = new Buffet(id,customer,restaurant);
         PayementSystem payementSystem = new PayementSystem(id);
