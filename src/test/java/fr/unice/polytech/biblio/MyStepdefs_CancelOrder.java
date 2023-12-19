@@ -42,7 +42,7 @@ public class MyStepdefs_CancelOrder {
 
     }
 
-    @Then("The order is cancelled, and {string} can't validate his order")
+    @Then("The order is cancelled and deleted, and {string} can't validate his order but he can create one more")
     public void theOrderIsCancelledAndCanTValidateHisOrder(String customerName) {
         assertEquals(OrderState.CANCELLED,order.getOrderState());
         HourTime currentTime = new HourTime(13,15);
