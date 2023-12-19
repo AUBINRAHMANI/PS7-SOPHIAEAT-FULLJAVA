@@ -17,12 +17,7 @@ public class MyStepdefs_payOrder {
     SimpleOrder order;
     SimpleOrderBuilder simpleOrderBuilder;
     Customer customer;
-    Dish dish ;
     Restaurant restaurant;
-    Dish pizza;
-    //ArrayList<Dish> dishes;
-    Schedules openingTime;
-
 
     @Given("a customer {string} who has an order with one dish {string} in the restaurant {string}")
     public void customerWhoHasOrdered(String customerName, String dishName, String nameRestaurant){
