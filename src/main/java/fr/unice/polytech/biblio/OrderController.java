@@ -234,4 +234,8 @@ public class OrderController {
         buffet.setPayementSystem(payementSystem);
         orders.add(buffet);
     }
+
+    public String showMenu(Restaurant restaurant){
+        return restaurant.showMenu();
+    }
 }

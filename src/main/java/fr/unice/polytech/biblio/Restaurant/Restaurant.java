@@ -71,6 +71,10 @@ public class Restaurant {
         return false;
     }
 
+    public String showMenu(){
+        return "Les menu du restaurant " + this.name + "sont : " + this.dishes.toString();
+    }
+
 
     public String toString() {
         return "Restaurant [name=" + name + ", address=" + address + ", dishes=" + dishes + "]";
