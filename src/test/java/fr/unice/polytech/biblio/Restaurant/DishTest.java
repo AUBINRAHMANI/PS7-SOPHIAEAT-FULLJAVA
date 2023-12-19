@@ -29,7 +29,7 @@ class DishTest {
 
     @Test
     void toStringTest() {
-        assertEquals("Dish [ name=Pasta, price=10.0]", dish.toString());
+        assertEquals("Dish [ name : Pasta, price : 10.0€ ] \n", dish.toString());
     }
 
     @Test
